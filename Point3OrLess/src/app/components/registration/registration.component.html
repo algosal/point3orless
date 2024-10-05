@@ -1,0 +1,31 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" required>
+
+    <label for="firstName">First Name</label>
+    <input id="firstName" formControlName="firstName" required>
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" formControlName="lastName" required>
+
+    <label for="gender">Gender</label>
+    <select id="gender" formControlName="gender" required>
+        <option value="">Select...</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+
+    <label for="password">Password</label>
+    <input id="password" formControlName="password" type="password" required>
+
+    <label for="dateOfBirth">Date of Birth</label>
+    <input id="dateOfBirth" formControlName="dateOfBirth" type="date" required>
+
+    <label>
+        <input type="checkbox" formControlName="terms" required>
+        I agree to the terms and conditions
+    </label>
+
+    <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+</form>

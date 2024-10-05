@@ -1,0 +1,13 @@
+<!-- product-detail.component.html -->
+
+<div class="product-detail-container" *ngIf="product">
+    <h1>{{ product.name }}</h1>
+    <p class="description">{{ product.description }}</p>
+    <p class="price">Price: ${{ product.price.toFixed(2) }}</p>
+    <p class="benefits">Benefits: {{ product.benefits }}</p>
+    <button (click)="goBack()">Back to Products</button>
+</div>
+
+<div *ngIf="!product" class="loading">
+    <p>Loading product details...</p>
+</div>

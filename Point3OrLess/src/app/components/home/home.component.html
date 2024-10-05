@@ -1,0 +1,19 @@
+<!-- home.component.html -->
+
+<div class="home-container">
+    <h1>Welcome to Our CBD Store</h1>
+    <p>Your go-to place for high-quality CBD products.</p>
+
+    <!-- Age Verification Modal -->
+    @if (isModalOpen) {
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h2>Age Verification</h2>
+            <p>Are you 21 or over 21 years old?</p>
+            <button (click)="verifyAge(true)">Yes</button>
+            <button (click)="verifyAge(false)">No</button>
+        </div>
+    </div>
+    }
+</div>
