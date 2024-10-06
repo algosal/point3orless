@@ -1,29 +1,20 @@
+/* Product Container */
 .product-container {
-  display: flex; /* Use flexbox for responsive layout */
-  flex-wrap: wrap; /* Allow wrapping of cards */
-  justify-content: center; /* Center cards horizontally */
-  padding: 20px; /* Add padding around the container */
-  background-color: #f0f4f1; /* Light greenish background for a fresh feel */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .product-card {
-  background-color: #ffffff; /* White background for cards */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin: 15px; /* Space between cards */
-  padding: 20px; /* Inner spacing for card content */
-  width: 300px; /* Fixed width for cards */
-  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
-  cursor: pointer; /* Indicate clickable card */
-  text-align: center; /* Center text */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  max-width: 300px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.product-card:hover {
-  transform: translateY(-5px); /* Lift card on hover */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-  border: 2px solid #8bc34a; /* Highlight border on hover */
-}
-
 .product-image {
   width: 100%; /* Responsive image width */
   height: auto; /* Maintain aspect ratio */
@@ -31,24 +22,106 @@
   margin-bottom: 15px; /* Space below image */
 }
 
-.product-card h3 {
-  color: #4caf50; /* Cannabis leaf green for product name */
-  font-size: 1.2em; /* Larger font size for name */
-  margin: 0 0 10px; /* Space below the name */
+/* Quantity Selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
 }
 
-.product-card p {
-  margin: 5px 0; /* Space between paragraphs */
-  font-size: 1em; /* Consistent font size for text */
-  color: #555; /* Grey text color for other information */
+.quantity-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.product-card a {
-  color: #007bff; /* Link color */
-  text-decoration: none; /* Remove underline */
-  transition: color 0.3s; /* Smooth transition for hover effect */
+.quantity-button:hover {
+  background-color: #45a049;
 }
 
-.product-card a:hover {
-  color: #0056b3; /* Darker blue on hover */
+.quantity-input {
+  width: 50%; /* Width of the input */
+  border: 1px solid #ccc; /* Border styling */
+  margin: 0 10px; /* Horizontal margin for spacing */
+  border-radius: 4px; /* Rounded corners */
+
+  /* Set padding for height */
+  padding: 0; /* Remove vertical padding */
+  height: 30px; /* Set a specific height */
+
+  /* Center the text */
+  text-align: center; /* Center text inside the input */
+  line-height: 30px; /* Match line-height with input height */
+  font-size: 16px; /* Font size for better visibility */
+  box-shadow: none; /* No box shadow to avoid extra space */
+}
+
+/* Hide the spinner in webkit browsers (Chrome, Safari) */
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Remove default spinner */
+  margin: 0; /* No margin */
+}
+
+/* Hide the spinner in Firefox */
+.quantity-input {
+  -moz-appearance: textfield; /* Prevent spinner from showing */
+}
+
+/* Add to Cart and Go to Cart Buttons */
+.cart-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-to-cart,
+.go-to-cart {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.go-to-cart {
+  background-color: #ff5722;
+}
+
+.add-to-cart:hover {
+  background-color: #1976d2;
+}
+
+.go-to-cart:hover {
+  background-color: #e64a19;
+}
+
+.product-card {
+  position: relative; /* Necessary for absolute positioning of hover text */
+  overflow: hidden; /* Ensure hover text does not overflow outside the card */
+}
+
+/* Styling for the hover text */
+.hover-text {
+  position: absolute; /* Position it absolutely within the product card */
+  top: 50%; /* Position from the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Centering adjustment */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
+  color: white; /* White text */
+  padding: 5px 10px; /* Padding around the text */
+  border-radius: 5px; /* Rounded corners */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s; /* Smooth transition for visibility */
+}
+
+/* Show hover text on hover over the product card */
+.product-card:hover .hover-text {
+  opacity: 1; /* Show the hover text */
 }

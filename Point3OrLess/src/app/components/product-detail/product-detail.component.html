@@ -1,24 +1,58 @@
-<!-- product-detail.component.html -->
 @if (product) {
 <div class="product-detail-container">
-    <h1 style="font-size: 1.2em;">{{ product.name }}</h1>
-    <p class="wholesale-price">Wholesale Price: ${{ product.wholesalePrice.toFixed(2) }}</p>
-    <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
-    <h2>Description</h2>
-    <p class="description">{{ product.description }}</p>
-    <p class="price">MSRP: ${{ product.msrp.toFixed(2) }}</p>
-    <p class="price">Wholesale Price: ${{ product.wholesalePrice.toFixed(2) }}</p>
-    <p class="quantity">Quantity: {{ product.quantity }}</p>
-    @if (product.certificateOfAnalysis) {
-    <p>
-        <strong>Certificate of Analysis:</strong>
-        <a [href]="product.certificateOfAnalysis" target="_blank">View Certificate</a>
-    </p>
-    }
-    <button (click)="goBack()">Back to Products</button>
+  <h1 style="font-size: 1.2em">{{ product.name }}</h1>
+  @if(product.wholesalePrice){
+  <p class="wholesale-price">
+    Wholesale Price: ${{ product.wholesalePrice.toFixed(2) }}
+  </p>
+  }
+  <img
+    [src]="product.imageUrl"
+    alt="{{ product.name }}"
+    class="product-image"
+  />
+  <h2>Description</h2>
+  <p class="description">{{ product.description }}</p>
+  @if(product.msrp){
+
+  <p class="price">MSRP: ${{ product.msrp.toFixed(2) }}</p>
+  } @if(product.wholesalePrice){
+
+  <p class="price">Wholesale Price: ${{ product.wholesalePrice.toFixed(2) }}</p>
+
+  }
+  <!-- Quantity Selector -->
+  <div class="quantity-selector">
+    <button class="quantity-button" (click)="decreaseQuantity()">-</button>
+    <input
+      type="number"
+      [value]="product.quantity"
+      class="quantity-input"
+      readonly
+    />
+
+    <button class="quantity-button" (click)="increaseQuantity()">+</button>
+  </div>
+
+  <!-- Add to Cart and Go to Cart Buttons -->
+  <div class="cart-buttons">
+    <button class="add-to-cart" (click)="addToCart()">Add to Cart</button>
+    <button class="go-to-cart" (click)="goToCart()">Go to Cart</button>
+  </div>
+
+  @if (product.certificateOfAnalysis) {
+  <p>
+    <strong>Certificate of Analysis:</strong>
+    <a [href]="product.certificateOfAnalysis" target="_blank"
+      >View Certificate</a
+    >
+  </p>
+  }
+  <button (click)="goBack()">Back to Products</button>
 </div>
-} @if (!product) {
+} @else {
 <div class="loading">
-    <p>Loading product details...</p>
+  <p>Loading product details...</p>
 </div>
+
 }

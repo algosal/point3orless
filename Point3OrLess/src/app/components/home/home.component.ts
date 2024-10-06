@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   isModalOpen: boolean = false; // To control modal visibility
+  isBusinessModalOpen: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   verifyAge(isOver21: boolean): void {
     if (isOver21) {
-      this.askUserType(); // Ask for user type if over 21
+      this.isBusinessModalOpen = true; // Ask for user type if over 21
     } else {
       alert('You must be 21 or older to access this site.');
       this.closeModal(); // Close modal on rejection
@@ -32,12 +33,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  askUserType(): void {
-    const userType = confirm(
-      'Are you a Business or an Individual? (Click OK for Business, Cancel for Individual)'
-    );
+  askUserType(userType: boolean): void {
+    // const userType = confirm(
+    //   'Are you a Business or an Individual? (Click OK for Business, Cancel for Individual)'
+    // );
+    // let userType: boolean = true;
     if (userType) {
       // Business user
+      this.isBusinessModalOpen = false;
       this.router.navigate(['']);
     } else {
       // Individual user

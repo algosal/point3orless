@@ -1,17 +1,50 @@
 <div class="product-container">
-    @for (product of products; track product.id) {
-    <div class="product-card" (click)="viewProductDetails(product.id)">
-        <h3>{{ product.name }}</h3>
-        <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
-        <p><strong>Wholesale Price:</strong> ${{ product.wholesalePrice }}</p>
-        <p><strong>MSRP:</strong> ${{ product.msrp }}</p>
+  @for (product of products; track product.id) {
+  <div class="product-card" (click)="viewProductDetails(product.id)">
+    <h3>{{ product.name }}</h3>
+    <img
+      [src]="product.imageUrl"
+      alt="{{ product.name }}"
+      class="product-image"
+    />
+    <p><strong>Wholesale Price:</strong> ${{ product.wholesalePrice }}</p>
+    <p><strong>MSRP:</strong> ${{ product.msrp }}</p>
 
-        @if (product.Certificate_Of_Analysis_Link) {
-        <p>
-            <strong>Certificate of Analysis:</strong>
-            <a [href]="product.Certificate_Of_Analysis_Link" target="_blank">View Certificate</a>
-        </p>
-        }
-    </div>
+    @if (product.certificateOfAnalysis) {
+    <p>
+      <strong>Certificate of Analysis:</strong>
+      <a [href]="product.certificateOfAnalysis" target="_blank"
+        >View Certificate</a
+      >
+    </p>
     }
+
+    <!-- Quantity Selector -->
+    <div class="quantity-selector">
+      <button class="quantity-button" (click)="decreaseQuantity(product)">
+        -
+      </button>
+      <input
+        type="number"
+        [value]="product.quantity"
+        class="quantity-input"
+        readonly
+      />
+      <button class="quantity-button" (click)="increaseQuantity(product)">
+        +
+      </button>
+    </div>
+
+    <!-- Add to Cart and Go to Cart Buttons -->
+    <div class="cart-buttons">
+      <button class="add-to-cart" (click)="addToCart(product)">
+        Add to Cart
+      </button>
+      <button class="go-to-cart" (click)="goToCart()">Go to Cart</button>
+    </div>
+
+    <!-- Hover Text -->
+    <div class="hover-text">Click for details</div>
+  </div>
+  }
 </div>
