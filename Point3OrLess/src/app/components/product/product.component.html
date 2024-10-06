@@ -1,20 +1,17 @@
-<!-- product.component.html -->
-
 <div class="product-container">
-    <h1>Our Products</h1>
-<!-- product.component.html -->
-
-<div class="product-list">
     @for (product of products; track product.id) {
     <div class="product-card" (click)="viewProductDetails(product.id)">
         <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
-        <p>Price: ${{ product.price }}</p>
+        <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
+        <p><strong>Wholesale Price:</strong> ${{ product.wholesalePrice }}</p>
+        <p><strong>MSRP:</strong> ${{ product.msrp }}</p>
+
+        @if (product.Certificate_Of_Analysis_Link) {
+        <p>
+            <strong>Certificate of Analysis:</strong>
+            <a [href]="product.Certificate_Of_Analysis_Link" target="_blank">View Certificate</a>
+        </p>
+        }
     </div>
     }
-</div>
-
-   
-   
-   
 </div>

@@ -2,58 +2,57 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductsService } from '../../service/products.service';
 
 @Component({
   selector: 'app-product-detail',
-  standalone: true, // Mark this component as standalone
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
-  productId: number | null = null;
-  product: any; // Object to hold product details
+  products: any[] = []; // Array to hold all products
+  product: any; // Variable to hold the selected product
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit(): void {
-    // Get the product ID from the route parameters
-    this.route.params.subscribe((params) => {
-      this.productId = +params['id']; // Convert string to number
-      this.fetchProductDetails(this.productId);
-    });
+    this.fetchProducts(); // Fetch all products on initialization
   }
 
-  fetchProductDetails(id: number): void {
-    // Simulating fetching product details. Replace with actual API call.
-    const productDetails = {
-      1: {
-        id: 1,
-        name: 'CBD Oil',
-        price: 29.99,
-        description: 'High-quality CBD oil for wellness.',
-        benefits: 'Reduces anxiety, pain relief',
-      },
-      2: {
-        id: 2,
-        name: 'CBD Gummies',
-        price: 19.99,
-        description: 'Delicious gummies infused with CBD.',
-        benefits: 'Easy to take, tasty',
-      },
-      3: {
-        id: 3,
-        name: 'CBD Cream',
-        price: 34.99,
-        description: 'Soothing CBD cream for relief.',
-        benefits: 'Moisturizes skin, provides relief',
-      },
-      // Add more product details as needed
-    };
+  fetchProducts(): void {
+    this.productsService.getProducts().subscribe(
+      (response: any[]) => {
+        this.products = response.map((product) => ({
+          id: product.Serial_Number,
+          name: product.Name,
+          msrp: product.Price,
+          imageUrl: product.web_image,
+          description: product.Description,
+          quantity: product.Quantity_In_Text,
+          certificateOfAnalysis: product.Certificate_Of_Analysis_Link,
+          wholesalePrice: product.UserPRice, // Corrected the typo from UserPRice
+        }));
 
-    this.product = productDetails[id] || null; // Fetch product by ID
+        this.filterProduct(); // Filter the product after fetching all
+      },
+      (error) => {
+        console.error('Error fetching products:', error); // Handle errors appropriately
+      }
+    );
+  }
+
+  filterProduct(): void {
+    const productId = this.route.snapshot.paramMap.get('id'); // Get the product ID from the route
+    if (productId) {
+      this.product = this.products.find((prod) => prod.id == productId); // Filter to find the specific product
+    }
   }
 
   goBack(): void {
-    this.router.navigate(['/product']); // Navigate back to product list
+    this.router.navigate(['/products']); // Navigate back to the product list
   }
 }

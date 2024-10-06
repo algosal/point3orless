@@ -1,0 +1,28 @@
+{
+  " Order": {
+    "VariationID": 1,
+    "ProductID": 1,
+    "Vendor": "Neurogan, Inc",
+    "Name": "NG CBD Gums WB 1350MG",
+    "Serial_Number": "850015842283",
+    "Price": 90.0,
+    "Description": "Our best-selling CBD gummies feature 45mg to 120mg...",
+    "Quantity_In_Text": "1350 milligrams",
+    "External_Rating": null,
+    "Number_Of_External_Ratings": null,
+    "Certificate_Of_Analysis_Link": "",
+    "UserPrice": 60.0,
+    "Quantity": null,
+    "Sub_Total": null,
+    "Tax_On_Sale": null,
+    "Total_Amount": null,
+    "Client_Email": ""
+  },
+  "Client_Information": {
+    "Client_Email": "",
+    "Order_Id": null,
+    "Client_Business_Name": null,
+    "Client_Address": null,
+    "Cllient_Phone_Number": null
+  }
+}

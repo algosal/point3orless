@@ -1,51 +1,48 @@
-// product.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// import { HttpClientModule } from '@angular/common/http';
+import { ProductsService } from '../../service/products.service';
 
 @Component({
   selector: 'app-product',
-  standalone: true, // Mark this component as standalone
+  standalone: true,
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
+  // imports: [HttpClientModule], // Import HttpClientModule here if using standalone
 })
 export class ProductComponent implements OnInit {
-  products: any[] = []; // Array to hold product data
+  products: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private productsService: ProductsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Fetch product data (this could be from a service or API)
     this.fetchProducts();
   }
 
   fetchProducts(): void {
-    // Simulating product data retrieval. Replace this with an actual API call.
-    this.products = [
-      {
-        id: 1,
-        name: 'CBD Oil',
-        price: 29.99,
-        description: 'High-quality CBD oil for wellness.',
+    this.productsService.getProducts().subscribe(
+      (response: any[]) => {
+        this.products = response.map((product) => ({
+          id: product.Serial_Number,
+          name: product.Name,
+          msrp: product.Price,
+          imageUrl: product.web_image,
+          description: product.Description,
+          quantity: product.Quantity_In_Text,
+          certificateOfAnalysis: product.Certificate_Of_Analysis_Link,
+          wholesalePrice: product.UserPRice,
+        }));
       },
-      {
-        id: 2,
-        name: 'CBD Gummies',
-        price: 19.99,
-        description: 'Delicious gummies infused with CBD.',
-      },
-      {
-        id: 3,
-        name: 'CBD Cream',
-        price: 34.99,
-        description: 'Soothing CBD cream for relief.',
-      },
-      // Add more products as needed
-    ];
+      (error) => {
+        console.error('Error fetching product data:', error);
+      }
+    );
   }
 
   viewProductDetails(productId: number): void {
-    // Navigate to a detailed view of the product (if implemented)
-    this.router.navigate(['/products', productId]);
+    this.router.navigate(['/product', productId]);
   }
 }

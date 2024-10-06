@@ -1,3 +1,7 @@
+<div class="login-wrapper">
+
+<div class="login-container">
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label for="email">Email</label>
     <input id="email" formControlName="email" type="email" required>
@@ -7,3 +11,5 @@
 
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
 </form>
+</div>
+</div>

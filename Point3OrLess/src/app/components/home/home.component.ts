@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // Check localStorage for consent
-    const consent = localStorage.getItem('ageConsent');
+    const consent = sessionStorage.getItem('ageConsent');
     if (!consent) {
       this.isModalOpen = true; // Open modal if consent is not present
     }
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     } else {
       alert('You must be 21 or older to access this site.');
       this.closeModal(); // Close modal on rejection
+      window.location.href = 'https://google.com';
     }
   }
 
@@ -37,13 +38,13 @@ export class HomeComponent implements OnInit {
     );
     if (userType) {
       // Business user
-      this.router.navigate(['/products']);
+      this.router.navigate(['']);
     } else {
       // Individual user
       window.location.href = 'https://point3orbelow.com';
     }
     // Store consent in localStorage
-    localStorage.setItem('ageConsent', 'true');
+    sessionStorage.setItem('ageConsent', 'true');
     this.closeModal(); // Close modal after user type is selected
   }
 

@@ -1,18 +1,64 @@
 <!-- home.component.html -->
 
 <div class="home-container">
-    <h1>Welcome to Our CBD Store</h1>
+    <!-- Removed the main heading -->
     <p>Your go-to place for high-quality CBD products.</p>
+
+    <!-- What We Do Section -->
+    <section class="what-we-do">
+        <h2>What We Do</h2>
+        <p>
+            At Silos to Sidewalks Inc., we are dedicated to providing high-quality CBD health and wellness products that
+            cater to a variety of needs. Our extensive range of products is designed to support your health and wellness
+            journey, making it easier for you to find exactly what you need.
+        </p>
+        <p>
+            We focus on sourcing premium ingredients and ensuring the highest standards of quality throughout our
+            production process. Our commitment to transparency and integrity means you can trust that you are receiving
+            safe and effective products.
+        </p>
+    </section>
+
+    <!-- Why Shop With Us Section -->
+    <section class="why-shop-with-us">
+        <h2>Why Shop With Us</h2>
+        <ul>
+            <li><strong>Wholesale Pricing:</strong> We offer competitive wholesale pricing to ensure our partners can
+                access high-quality CBD products at affordable rates. This helps you maximize your profits while
+                providing your customers with the best products available.</li>
+            <li><strong>Support for Retailers:</strong> We are committed to helping businesses thrive. By partnering
+                with us, you gain access to resources, training, and marketing support designed to help you establish
+                and grow your retail presence. We believe in empowering our retailers to succeed, fostering a community
+                of collaboration and shared success.</li>
+            <li><strong>Quality Assurance:</strong> Our products undergo rigorous testing and quality control processes,
+                ensuring that you receive only the best CBD products that meet industry standards. We prioritize
+                transparency, so you can trust the products you sell.</li>
+            <li><strong>Veteran Empowerment:</strong> By purchasing from us, you support our mission to employ and
+                uplift veterans. Your investment helps create job opportunities and promotes a sense of community and
+                purpose for those who have served.</li>
+            <li><strong>Wide Product Range:</strong> Our diverse selection of CBD products caters to various needs and
+                preferences, ensuring you can find exactly what you need to serve your customers effectively.</li>
+        </ul>
+        <p>
+            Join us in promoting wellness, supporting veterans, and growing your business. Shop with Silos to Sidewalks
+            Inc. today!
+        </p>
+    </section>
+
+    <!-- Shop Button -->
+    <div class="shop-button-container">
+        <a href="/products" class="shop-button">Shop CBD Products</a>
+    </div>
 
     <!-- Age Verification Modal -->
     @if (isModalOpen) {
     <div class="modal">
         <div class="modal-content">
-            <span class="close" (click)="closeModal()">&times;</span>
-            <h2>Age Verification</h2>
-            <p>Are you 21 or over 21 years old?</p>
-            <button (click)="verifyAge(true)">Yes</button>
-            <button (click)="verifyAge(false)">No</button>
+            <!-- <span class="close" (click)="closeModal()">&times;</span> -->
+            <h2 class="modal-h1">Age Verification</h2>
+            <p class="modal-p">Are you 21 or over 21 years old?</p>
+            <button class="modal-button-yes" (click)="verifyAge(true)">Yes</button>
+            <button class="modal-button-no" (click)="verifyAge(false)">No</button>
         </div>
     </div>
     }

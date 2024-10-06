@@ -1,98 +1,53 @@
-/* Main App Component Style */
-:root {
-  --cannabis-green: #4caf50; /* Main green color */
-  --light-green: #a5d6a7; /* Lighter green for accents */
-  --dark-green: #2e7d32; /* Darker green for headers or footers */
-  --earth-brown: #8d6e63; /* Earthy brown color */
-  --gold: #ffd54f; /* Gold for highlights */
-  --white: #ffffff; /* Background white */
-  --gray: #f5f5f5; /* Light gray for backgrounds */
+/* styles.css or app.component.css */
+
+.app-header {
+  position: fixed; /* Fix the header at the top */
+  top: 0; /* Position it at the very top */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width */
+  background-color: #fff; /* Background color for the header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensure it stays above other content */
+  padding: 10px 20px; /* Inner padding */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  color: rgb(64, 185, 64);
 }
 
-/* Overall body style */
-body {
-  font-family: "Arial", sans-serif;
-  background-color: var(--white);
-  margin: 0;
-  padding: 0;
+/* Spacer div to prevent content from hiding behind the header */
+.header-spacer {
+  height: 80px; /* Match this height to your header's height */
+  background-color: transparent; /* Make it invisible */
 }
 
-/* Container for content */
-.app-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Header style */
-.header {
-  background-color: var(--dark-green);
-  color: var(--white);
-  padding: 20px;
-  text-align: center;
-  font-size: 2em;
-  border-radius: 10px;
-}
-
-/* Main content area */
-.main-content {
-  background-color: var(--light-green);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Button style */
-button {
-  background-color: var(--cannabis-green);
-  color: var(--white);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: var(--dark-green);
-}
-
-/* Footer style */
-.footer {
-  background-color: var(--earth-brown);
-  color: var(--white);
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-
-/* Form styles */
-form {
+/* Hamburger button styling */
+.nav-hamburger {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: space-around;
+  width: 40px; /* Width of the hamburger icon */
+  height: 30px; /* Height of the hamburger icon */
+  background: lightgreen; /* No background */
+  border: none; /* Remove button border */
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  padding: 10px;
-  border: 1px solid var(--gray);
-  border-radius: 5px;
-  font-size: 1em;
+/* Create the three lines of the hamburger */
+.nav-hamburger span {
+  width: 100%;
+  height: 4px; /* Thickness of the lines */
+  background-color: #fff; /* Line color (white in this case) */
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border-color: var(--cannabis-green);
-  outline: none;
-}
-
-/* Error message style */
-.error-message {
-  color: red;
-  font-size: 0.9em;
+/* Add hover effect */
+.nav-hamburger:hover span {
+  background-color: rgba(255, 255, 255, 0.7); /* Slight transparency on hover */
 }

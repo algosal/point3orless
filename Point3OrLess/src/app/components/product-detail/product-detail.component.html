@@ -1,13 +1,24 @@
 <!-- product-detail.component.html -->
-
-<div class="product-detail-container" *ngIf="product">
-    <h1>{{ product.name }}</h1>
+@if (product) {
+<div class="product-detail-container">
+    <h1 style="font-size: 1.2em;">{{ product.name }}</h1>
+    <p class="wholesale-price">Wholesale Price: ${{ product.wholesalePrice.toFixed(2) }}</p>
+    <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
+    <h2>Description</h2>
     <p class="description">{{ product.description }}</p>
-    <p class="price">Price: ${{ product.price.toFixed(2) }}</p>
-    <p class="benefits">Benefits: {{ product.benefits }}</p>
+    <p class="price">MSRP: ${{ product.msrp.toFixed(2) }}</p>
+    <p class="price">Wholesale Price: ${{ product.wholesalePrice.toFixed(2) }}</p>
+    <p class="quantity">Quantity: {{ product.quantity }}</p>
+    @if (product.certificateOfAnalysis) {
+    <p>
+        <strong>Certificate of Analysis:</strong>
+        <a [href]="product.certificateOfAnalysis" target="_blank">View Certificate</a>
+    </p>
+    }
     <button (click)="goBack()">Back to Products</button>
 </div>
-
-<div *ngIf="!product" class="loading">
+} @if (!product) {
+<div class="loading">
     <p>Loading product details...</p>
 </div>
+}

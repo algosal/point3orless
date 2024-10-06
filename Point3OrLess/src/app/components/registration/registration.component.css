@@ -1,7 +1,7 @@
 /* Container styling */
 .registration-container {
   max-width: 400px;
-  margin: auto;
+  margin: 20px auto;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -24,6 +24,7 @@ input[type="checkbox"] {
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
   transition: border-color 0.3s;
 }
 
@@ -33,6 +34,16 @@ input[type="password"]:focus {
   border-color: #007bff; /* Change to your primary color */
 }
 
+.select-box,
+.dob {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+}
+.dob {
+  box-sizing: border-box;
+}
 /* Button styling */
 button {
   width: 100%;

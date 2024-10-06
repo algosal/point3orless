@@ -1,6 +1,16 @@
-<h1>Welcome to Point3 Or Less</h1>
+<header class="app-header">
+  <h1>Point3 Or Less</h1>
+<button (click)="nav.openModal()" class="nav-hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+</header>
 
-<router-outlet>
-  <!-- <app-registration></app-registration>
-  <app-login></app-login> -->
-</router-outlet>
+<!-- Spacer div -->
+<div class="header-spacer"></div>
+
+<router-outlet></router-outlet>
+
+<!-- Use the standalone navigation component -->
+<app-navigation #nav></app-navigation>
