@@ -1,11 +1,12 @@
 <div class="product-container">
   @for (product of products; track product.id) {
-  <div class="product-card" (click)="viewProductDetails(product.id)">
+  <div class="product-card">
     <h3>{{ product.name }}</h3>
     <img
       [src]="product.imageUrl"
       alt="{{ product.name }}"
       class="product-image"
+      (click)="viewProductDetails(product.id)"
     />
     <p><strong>Wholesale Price:</strong> ${{ product.wholesalePrice }}</p>
     <p><strong>MSRP:</strong> ${{ product.msrp }}</p>
@@ -44,7 +45,9 @@
     </div>
 
     <!-- Hover Text -->
-    <div class="hover-text">Click for details</div>
+    <div class="hover-text" (click)="viewProductDetails(product.id)">
+      Click for details
+    </div>
   </div>
   }
 </div>
