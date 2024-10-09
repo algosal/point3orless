@@ -54,4 +54,8 @@ export class HomeComponent implements OnInit {
   closeModal(): void {
     this.isModalOpen = false; // Close modal
   }
+  navigate(path: string) {
+    this.router.navigate([path]);
+    this.closeModal(); // Close the modal after navigation
+  }
 }

@@ -64,7 +64,7 @@
 
   <!-- Shop Button -->
   <div class="shop-button-container">
-    <a href="/products" class="shop-button">Shop CBD Products</a>
+    <a class="shop-button" (click)="navigate('/products')">Shop CBD Products</a>
   </div>
 
   <!-- Age Verification Modal -->
@@ -72,7 +72,7 @@
   <div class="modal">
     <div class="modal-content">
       <!-- <span class="close" (click)="closeModal()">&times;</span> -->
-      <h2 class="modal-h1">Age Verification</h2>
+      <h2 class="">Age Verification</h2>
       <p class="modal-p">Are you 21 or over 21 years old?</p>
       <button class="modal-button-yes" (click)="verifyAge(true)">Yes</button>
       <button class="modal-button-no" (click)="verifyAge(false)">No</button>
@@ -82,7 +82,7 @@
   <div class="modal">
     <div class="modal-content">
       <!-- <span class="close" (click)="closeModal()">&times;</span> -->
-      <h1 class="modal-h1-">Business or Individual</h1>
+      <h1 class="">Business or Individual</h1>
       <p class="modal-p">
         Are you a Business Retailer with Resellers Licenses?
       </p>
