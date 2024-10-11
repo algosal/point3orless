@@ -6,7 +6,8 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { LoginComponent } from './components/login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -25,4 +26,15 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'Point3OrLess';
+  showLoginButton: boolean = false; // This will control the button rendering
+
+  ngOnInit() {
+    this.showLoginButton = true;
+  }
+  constructor(private router: Router) {}
+
+  navigate(path: string) {
+    this.router.navigate([path]);
+    this.showLoginButton = false;
+  }
 }

@@ -83,7 +83,7 @@ li {
 }
 
 .modal-p {
-  font-size: 5vh;
+  font-size: 1.6em;
 }
 /* Close Button Styles */
 .close {
@@ -113,6 +113,7 @@ li {
   cursor: pointer; /* Pointer cursor */
   transition: background-color 0.3s; /* Smooth transition */
   margin: 10px; /* Margin between buttons */
+  width: 25vw;
 }
 
 .modal-button-no {
@@ -178,6 +179,7 @@ li {
   .modal-button-no {
     padding: 8px 16px; /* Adjust button padding for smaller screens */
     font-size: 0.9em; /* Slightly smaller font size for buttons */
+    width: 34vw;
   }
   .modal-p {
     font-size: 1em;

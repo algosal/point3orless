@@ -1,34 +1,82 @@
 <div class="registration-container">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <label for="email">Business Email</label>
+    <input id="email" formControlName="email" type="email" required />
 
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" required>
-        
-        <label for="firstName">First Name</label>
-        <input id="firstName" formControlName="firstName" type="text" required>
-        
-        <label for="lastName">Last Name</label>
-        <input id="lastName" formControlName="lastName" type="text" required>
-        
-        <label for="gender">Gender</label>
-        <select id="gender" formControlName="gender" class="select-box" required>
-            <option value="">Select...</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
-        
-        <label for="password">Password</label>
-    <input id="password" formControlName="password" type="password" required>
+    @if(registrationForm.get('email')?.touched &&
+    registrationForm.get('email')?.invalid){
+    <div class="error">
+      @if(registrationForm.get('email')?.errors?.['required']){
+
+      <small>Email is required.</small>
+      } @if(registrationForm.get('email')?.errors?.['email']){
+
+      <small>Please enter a valid email address.</small>
+      }
+    </div>
+    }
+
+    <label for="firstName">First Name</label>
+    <input id="firstName" formControlName="firstName" type="text" required />
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" formControlName="lastName" type="text" required />
+
+    <label for="gender">Gender</label>
+    <select id="gender" formControlName="gender" class="select-box" required>
+      <option value="">Select...</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="password">Password</label>
+    <input id="password" formControlName="password" type="password" required />
+
+    @if(registrationForm.get('password')?.errors?.['passwordStrength']){
+    <div>
+      <p class="error">
+        {{ registrationForm.get('password')?.errors?.['passwordStrength'] }}
+      </p>
+    </div>
+    }
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      id="confirmPassword"
+      formControlName="confirmPassword"
+      type="password"
+      required
+    />
+
+    @if(registrationForm.errors?.['passwordMismatch']){
+    <div>
+      <p class="error">Passwords do not match.</p>
+    </div>
+    }
 
     <label for="dateOfBirth">Date of Birth</label>
-    <input id="dateOfBirth" formControlName="dateOfBirth" type="date" class="dob" required>
-    
+    <input
+      id="dateOfBirth"
+      formControlName="dateOfBirth"
+      type="date"
+      class="dob"
+      required
+    />
+    @if(registrationForm.get('dateOfBirth')?.errors?.['ageInvalid']){
+
+    <div>
+      <p class="error">You must be 21 years or older to register.</p>
+    </div>
+    }
+
     <label>
-        <input type="checkbox" formControlName="terms" type="checkbox" required>
-        I agree to the terms and conditions
+      <input type="checkbox" formControlName="terms" required />
+      I agree to the terms and conditions
     </label>
-    
-    <button type="submit" [disabled]="registrationForm.invalid">Register</button>
-</form>
+
+    <button type="submit" [disabled]="registrationForm.invalid">
+      Register
+    </button>
+  </form>
 </div>

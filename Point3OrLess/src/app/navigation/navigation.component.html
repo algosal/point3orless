@@ -1,27 +1,31 @@
 @if(isModalOpen) {
 <div class="modal">
-    <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
-        <!-- <h1 class="modal-title">Point3 or Less</h1> -->
-        <nav class="navigation-menu">
-            <ul>
-                <li class="navigation-item">
-                    <a class="navigation-link" (click)="navigate('')">Home</a>
-                </li>
-                <li class="navigation-item">
-                    <a class="navigation-link" (click)="navigate('/products')">Products</a>
-                </li>
-                <li class="navigation-item">
-                    <a class="navigation-link" (click)="navigate('/login')">Log in</a>
-                </li>
-                <li class="navigation-item">
-                    <a class="navigation-link" (click)="navigate('/register')">Register</a>
-                </li>
-                <li class="navigation-item">
-                    <a class="navigation-link" (click)="navigate('/contact')">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <!-- <h1 class="modal-title">Point3 or Less</h1> -->
+    <nav class="navigation-menu">
+      <ul>
+        <li class="navigation-item">
+          <a class="navigation-link" (click)="navigate('')">Home</a>
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-link" (click)="navigate('/products')"
+            >Products</a
+          >
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-link" (click)="navigate('/login')">Log in</a>
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-link" (click)="navigate('/register')"
+            >Register</a
+          >
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-link" (click)="navigate('/contact')">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 }

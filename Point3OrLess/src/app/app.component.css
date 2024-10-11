@@ -2,30 +2,78 @@
 
 .app-header {
   position: fixed; /* Fix the header at the top */
+  height: 14vh;
+  font-size: 7vh;
   top: 0; /* Position it at the very top */
   left: 0; /* Align to the left */
   width: 100%; /* Full width */
   background-color: #fff; /* Background color for the header */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  z-index: 1000; /* Ensure it stays above other content */
+  z-index: 1; /* Ensure it stays above other content */
   padding: 10px 20px; /* Inner padding */
   display: flex; /* Use flexbox for alignment */
   align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
+  justify-content: left; /* Center items horizontally */
   color: rgb(64, 185, 64);
 }
 
 /* Spacer div to prevent content from hiding behind the header */
 .header-spacer {
-  height: 80px; /* Match this height to your header's height */
+  height: 16vh; /* Match this height to your header's height */
   background-color: transparent; /* Make it invisible */
+}
+
+.logo {
+  margin: 10px;
+  margin-right: 25px;
+  width: 10vh;
+  height: 10vh;
+}
+
+.img-logo {
+  width: 10vh;
+  height: 10vh;
+}
+.nav-wrapper {
+  display: flex;
+  position: fixed;
+  top: 5vh;
+  right: 2vw;
+  z-index: 2;
+  flex-direction: row;
+}
+
+.my-profile {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(113, 185, 113);
+  border-radius: 50%;
+  z-index: 2;
+  color: green;
+  font-size: 1em;
+  color: white;
+  margin-right: 0.5em;
+  margin-top: -0.25em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.my-cart {
+  width: 40px;
+  height: 40px;
+  color: green;
+  font-size: 1.5em;
+  margin-right: 0em;
+  margin-top: -0.25em;
+  fill: green; /* Change this value to any color you want */
+  cursor: pointer;
 }
 
 /* Hamburger button styling */
 .nav-hamburger {
-  position: absolute;
-  top: 5vh;
-  right: 5vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -50,4 +98,58 @@
 /* Add hover effect */
 .nav-hamburger:hover span {
   background-color: rgba(255, 255, 255, 0.7); /* Slight transparency on hover */
+}
+
+.login-button {
+  width: 10vw;
+  position: fixed;
+  bottom: 3vh;
+  right: 1vw;
+  background-color: #556b2f; /* Olive Green */
+  border: 2px solid transparent; /* Light Gold */
+  font-size: 1em;
+  height: 2em;
+  border-radius: 10px;
+  color: #faf9f6; /* Soft White */
+  transition: 0.5s;
+}
+
+/* Hover state */
+.login-button:hover {
+  background-color: #b2beb5; /* Forest Green */
+  color: #2e8b57; /* Soft Sage */
+}
+
+/* Active (clicked) state */
+.login-button:active {
+  background-color: #98ff98; /* Pale Mint */
+  color: #36454f; /* Charcoal Gray */
+  transform: scale(0.95);
+}
+
+@media (max-width: 786px) {
+  .app-header {
+    font-size: 0.7em;
+    text-align: left;
+    justify-content: left;
+    /* width: auto; */
+  }
+  .nav-wrapper {
+    top: 3vh;
+    right: 5vw;
+  }
+  .logo {
+    margin: 0px;
+    margin-right: 5px;
+    width: 5vh;
+    height: 5vh;
+  }
+
+  .img-logo {
+    width: 5vh;
+    height: 5vh;
+  }
+  .login-button {
+    display: none;
+  }
 }

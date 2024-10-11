@@ -5,7 +5,8 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,11 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService, // Inject the user service
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -25,17 +30,28 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.loginForm.value.userPassword = this.loginForm.value.password;
+    delete this.loginForm.value.password;
     if (this.loginForm.valid) {
-      this.http
-        .post('https://your-api-url.com/login', this.loginForm.value)
-        .subscribe(
-          (response) => {
+      this.userService.login(this.loginForm.value).subscribe(
+        (response) => {
+          if (response.statusCode === 200) {
             console.log('User logged in successfully', response);
-          },
-          (error) => {
-            console.error('Login error', error);
+            this.router.navigate(['']); // Navigate to the home route after login
+            // const jwtToken = this.userService.getJwtToken();
+            // // console.log('JWT Token:', jwtToken);
+
+            // if (jwtToken) {
+            //   console.log('JWT Token:', jwtToken);
+            // }
+          } else {
+            alert('Bad Request');
           }
-        );
+        },
+        (error) => {
+          console.error('Login error', error);
+        }
+      );
     }
   }
 }

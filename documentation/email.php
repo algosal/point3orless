@@ -1,0 +1,1 @@
+curl -X POST http://point3orless.com/email/email.php -H "Content-Type: application/json" -d '{"email": "pfc.salman@gmail.com"}'
