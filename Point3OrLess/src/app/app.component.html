@@ -15,8 +15,9 @@
       />
     </svg>
   </div>
-
-  <div class="my-profile" (click)="navigate('/products')">P</div>
+  <div class="my-profile" (click)="navigateToProfile('/business-profile')">
+    P
+  </div>
 
   <button (click)="nav.openModal()" class="nav-hamburger">
     <span></span>
@@ -28,10 +29,10 @@
 <!-- Spacer div -->
 <div class="header-spacer"></div>
 
-@if(showLoginButton == true){
+<!-- @if(showLoginButton == true){
 
 <button utton class="login-button" (click)="navigate('/login')">Login</button>
-}
+} -->
 
 <router-outlet></router-outlet>
 

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { UserInfoService } from '../../service/user-info.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService, // Inject the user service
+    private userInfoService: UserInfoService, // Inject the UserInformationService
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -32,18 +34,24 @@ export class LoginComponent {
   onSubmit() {
     this.loginForm.value.userPassword = this.loginForm.value.password;
     delete this.loginForm.value.password;
+
     if (this.loginForm.valid) {
       this.userService.login(this.loginForm.value).subscribe(
         (response) => {
           if (response.statusCode === 200) {
-            console.log('User logged in successfully', response);
-            this.router.navigate(['']); // Navigate to the home route after login
-            // const jwtToken = this.userService.getJwtToken();
-            // // console.log('JWT Token:', jwtToken);
+            console.log(
+              'User logged in successfully',
+              response,
+              JSON.parse(response.body).data
+            );
+            this.userInfoService.setUserData(JSON.parse(response.body).data); // Set user information
 
-            // if (jwtToken) {
-            //   console.log('JWT Token:', jwtToken);
-            // }
+            // Check if the user is approved
+            if (JSON.parse(response.body).data.isApproved === 'No') {
+              this.router.navigate(['/business-profile']); // Navigate to the business profile
+            } else {
+              this.router.navigate(['']); // Navigate to the home route if approved
+            }
           } else {
             alert('Bad Request');
           }

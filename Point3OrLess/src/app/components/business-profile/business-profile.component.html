@@ -1,0 +1,19 @@
+<!-- business-profile.component.html -->
+@if(userData){
+<div class="profile-container">
+  <h1>Welcome, {{ userData.firstName }} {{ userData.lastName }}</h1>
+
+  @if(userData.isApproved == "No"){
+
+  <div>
+    <h2>Your profile is not approved yet.</h2>
+    <p>Please complete your business profile to proceed.</p>
+
+    <!-- Form for submitting business profile -->
+    <form>
+      <!-- Add fields like business name, address, etc. -->
+    </form>
+  </div>
+  }
+</div>
+}

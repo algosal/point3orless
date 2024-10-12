@@ -8,6 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule } from '@angular/forms';
 // import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { UserInfoService } from './service/user-info.service';
 
 @Component({
   selector: 'app-root',
@@ -26,15 +27,22 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Point3OrLess';
-  showLoginButton: boolean = false; // This will control the button rendering
 
-  ngOnInit() {
-    this.showLoginButton = true;
-  }
-  constructor(private router: Router) {}
+  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private userInforService: UserInfoService
+  ) {}
 
   navigate(path: string) {
     this.router.navigate([path]);
-    this.showLoginButton = false;
+  }
+
+  navigateToProfile(path: string) {
+    if (this.userInforService.getUserData() !== null) {
+      this.router.navigate([path]);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }
