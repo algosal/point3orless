@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { BusinessProfileComponent } from './components/business-profile/business-profile.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'products', component: ProductComponent },
   { path: 'product/:id', component: ProductDetailComponent },
   { path: 'business-profile', component: BusinessProfileComponent },
+  { path: 'contact', component: ContactUsComponent },
 
   // { path: '', redirectTo: '', pathMatch: 'full' },
 ];
