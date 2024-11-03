@@ -39,15 +39,14 @@ export class LoginComponent {
       this.userService.login(this.loginForm.value).subscribe(
         (response) => {
           if (response.statusCode === 200) {
-            console.log(
-              'User logged in successfully',
-              response,
-              JSON.parse(response.body).data
-            );
-            this.userInfoService.setUserData(JSON.parse(response.body).data); // Set user information
+            console.log('User logged in successfully', response);
+
+            console.log(response.user);
+            this.userInfoService.setUserData(response.user); // Set user information
+            console.log(this.userInfoService.getUserData());
 
             // Check if the user is approved
-            if (JSON.parse(response.body).data.isApproved === 'No') {
+            if (response.user.isApproved === 'No') {
               this.router.navigate(['/business-profile']); // Navigate to the business profile
             } else {
               this.router.navigate(['']); // Navigate to the home route if approved

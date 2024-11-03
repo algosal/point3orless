@@ -22,6 +22,7 @@ export class ContactUsComponent {
   constructor(private contactService: ContactService) {}
 
   onSubmit() {
+    console.log(this.contactForm);
     this.contactService.sendMessage(this.contactForm).subscribe(
       (response) => {
         console.log('Message sent successfully', response);

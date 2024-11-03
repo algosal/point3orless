@@ -29,7 +29,7 @@ export class CartService {
   }
 
   // Method to remove a product from the cart
-  removeFromCart(productId: number): void {
+  removeFromCart(productId: string): void {
     this.cart = this.cart.filter((item) => item.id !== productId);
   }
 
@@ -39,7 +39,7 @@ export class CartService {
   }
 
   // Optional: Method to decrease quantity
-  decreaseQuantity(productId: number): void {
+  decreaseQuantity(productId: string): void {
     const existingProduct = this.cart.find((item) => item.id === productId);
     if (existingProduct) {
       existingProduct.quantity--;

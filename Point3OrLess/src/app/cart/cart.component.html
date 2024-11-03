@@ -1,0 +1,24 @@
+@if(cartItems.length) {
+<div>
+  <h2>Your Cart</h2>
+
+  @for(item of cartItems; track item) {
+  <div class="cart-item">
+    <span>{{ item.name }}</span>
+    <span>Price: {{ item.price | currency }}</span>
+    <span>Quantity: {{ item.quantity }}</span>
+    <button (click)="decreaseQuantity(item.id)">-</button>
+    <button (click)="removeItem(item.id)">Remove</button>
+  </div>
+  }
+
+  <h3>Total: {{ totalAmount | currency }}</h3>
+
+  <button class="clear-cart-btn" (click)="clearCart()">Clear Cart</button>
+
+  <!-- Add the Checkout button here -->
+  <button class="checkout-btn" (click)="checkout()">Checkout</button>
+</div>
+} @else {
+<p class="empty-cart-message">Your cart is empty.</p>
+}

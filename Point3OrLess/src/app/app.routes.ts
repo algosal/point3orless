@@ -6,6 +6,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { BusinessProfileComponent } from './components/business-profile/business-profile.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'product/:id', component: ProductDetailComponent },
   { path: 'business-profile', component: BusinessProfileComponent },
   { path: 'contact', component: ContactUsComponent },
+  { path: 'cart', component: CartComponent },
 
   // { path: '', redirectTo: '', pathMatch: 'full' },
 ];

@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactService {
-  private apiUrl = '/api/contact'; // Replace with your actual endpoint
+  private apiUrl =
+    'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/api/contact'; // Replace with your actual endpoint
 
   constructor(private http: HttpClient) {}
 

@@ -1,0 +1,72 @@
+/* Basic Styling */
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  background-color: #f0f7ee; /* Soft, natural light green background */
+  border: 1px solid #c2d8b4; /* Soft green border */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+  color: #2f5933; /* Dark green for headings */
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #c2d8b4;
+  border-radius: 6px;
+  background-color: #e8f2e1; /* Light green item background */
+}
+
+.cart-item span {
+  color: #365a37; /* Darker green for text */
+}
+
+button {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #92c47d; /* Light green button background */
+  color: white;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 8px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #76a763; /* Darker green on hover */
+}
+
+.clear-cart-btn,
+.checkout-btn {
+  display: block;
+  width: 100%;
+  margin: 20px 0 0;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #f2b966; /* Warm contrasting color for 'Clear Cart' */
+  color: white;
+}
+
+.clear-cart-btn:hover {
+  background-color: #e0a759; /* Slightly darker on hover */
+}
+
+.empty-cart-message {
+  text-align: center;
+  font-size: 1.1em;
+  color: #3c573a;
+  margin-top: 20px;
+}
