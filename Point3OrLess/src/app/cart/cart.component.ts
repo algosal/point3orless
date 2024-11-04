@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../service/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -10,6 +11,7 @@ import { CartService } from '../service/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  router = inject(Router);
   cartItems: { id: string; name: string; quantity: number; price: number }[] =
     [];
   totalAmount: number = 0;
@@ -54,6 +56,9 @@ export class CartComponent implements OnInit {
         'Proceeding to checkout with the following items:',
         this.cartItems
       );
+
+      this.router.navigate(['/address']);
+
       // You might want to implement navigation to a checkout page
       // For example, if you are using Angular Router:
       // this.router.navigate(['/checkout']);

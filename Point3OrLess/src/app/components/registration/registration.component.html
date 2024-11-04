@@ -3,14 +3,12 @@
     <label for="email">Business Email</label>
     <input id="email" formControlName="email" type="email" required />
 
-    @if(registrationForm.get('email')?.touched &&
-    registrationForm.get('email')?.invalid){
+    @if (registrationForm.get('email')?.touched &&
+    registrationForm.get('email')?.invalid) {
     <div class="error">
-      @if(registrationForm.get('email')?.errors?.['required']){
-
+      @if (registrationForm.get('email')?.errors?.['required']) {
       <small>Email is required.</small>
-      } @if(registrationForm.get('email')?.errors?.['email']){
-
+      } @if (registrationForm.get('email')?.errors?.['email']) {
       <small>Please enter a valid email address.</small>
       }
     </div>
@@ -33,7 +31,7 @@
     <label for="password">Password</label>
     <input id="password" formControlName="password" type="password" required />
 
-    @if(registrationForm.get('password')?.errors?.['passwordStrength']){
+    @if (registrationForm.get('password')?.errors?.['passwordStrength']) {
     <div>
       <p class="error">
         {{ registrationForm.get('password')?.errors?.['passwordStrength'] }}
@@ -49,7 +47,7 @@
       required
     />
 
-    @if(registrationForm.errors?.['passwordMismatch']){
+    @if (registrationForm.errors?.['passwordMismatch']) {
     <div>
       <p class="error">Passwords do not match.</p>
     </div>
@@ -63,8 +61,8 @@
       class="dob"
       required
     />
-    @if(registrationForm.get('dateOfBirth')?.errors?.['ageInvalid']){
 
+    @if (registrationForm.get('dateOfBirth')?.errors?.['ageInvalid']) {
     <div>
       <p class="error">You must be 21 years or older to register.</p>
     </div>

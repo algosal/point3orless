@@ -1,0 +1,81 @@
+<div class="address-form-container">
+  <h2>Enter Your Address</h2>
+  <form (ngSubmit)="onSubmit()">
+    <label for="street">Street</label>
+    <input
+      id="street"
+      [(ngModel)]="street"
+      name="street"
+      placeholder="123 Main St"
+      required
+    />
+
+    @if (street.trim() === '') {
+    <div class="error">
+      <small>Street is required.</small>
+    </div>
+    }
+
+    <label for="city">City</label>
+    <input
+      id="city"
+      [(ngModel)]="city"
+      name="city"
+      placeholder="City"
+      required
+    />
+
+    @if (city.trim() === '') {
+    <div class="error">
+      <small>City is required.</small>
+    </div>
+    }
+
+    <label for="state">State</label>
+    <input
+      id="state"
+      [(ngModel)]="state"
+      name="state"
+      placeholder="State"
+      required
+    />
+
+    @if (state.trim() === '') {
+    <div class="error">
+      <small>State is required.</small>
+    </div>
+    }
+
+    <label for="postalCode">Postal Code</label>
+    <input
+      id="postalCode"
+      [(ngModel)]="postalCode"
+      name="postalCode"
+      placeholder="Postal Code"
+      required
+    />
+
+    @if (postalCode.trim() === '') {
+    <div class="error">
+      <small>Postal code is required.</small>
+    </div>
+    }
+
+    <label for="country">Country</label>
+    <input
+      id="country"
+      [(ngModel)]="country"
+      name="country"
+      placeholder="Country"
+      required
+    />
+
+    @if (country.trim() === '') {
+    <div class="error">
+      <small>Country is required.</small>
+    </div>
+    }
+
+    <button type="submit">Next</button>
+  </form>
+</div>
