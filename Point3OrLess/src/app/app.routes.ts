@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent, canActivate: [authGuard] },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'address', component: AddressFormComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard] },
 
   // { path: '', redirectTo: '', pathMatch: 'full' },
 ];

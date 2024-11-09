@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CartService } from '../service/cart.service';
+import { UserInfoService } from '../service/user-info.service'; // Import the UserInfoService
 
 @Component({
   selector: 'app-checkout',
@@ -13,14 +14,23 @@ export class CheckoutComponent implements OnInit {
   public nonce: string | null = null;
   public errorMessage: string | null = null;
   public totalAmount: number = 0; // Track the total amount of the cart
+  public userName: string = ''; // Track the user's name
+  public userAddress: string = ''; // Track the user's address
 
   private card: any; // Track the card instance
 
-  constructor(private renderer: Renderer2, private cartService: CartService) {}
+  constructor(
+    private renderer: Renderer2,
+    private cartService: CartService,
+    private userInfoService: UserInfoService // Inject UserInfoService
+  ) {}
 
   ngOnInit(): void {
     // Dynamically load the Square.js script
     this.loadSquareScript();
+
+    // Get user info
+    this.loadUserInfo();
 
     // Calculate the total price based on the cart
     this.calculateTotalAmount();
@@ -72,6 +82,17 @@ export class CheckoutComponent implements OnInit {
       0
     );
     console.log('Total Amount:', this.totalAmount);
+  }
+
+  // Get user information from the UserInfoService
+  loadUserInfo(): void {
+    const userData = this.userInfoService.getUserData();
+    this.userName = this.userInfoService.getUserName(); // Get the user's full name
+    const userAddress = this.userInfoService.getUserAddress();
+    if (userAddress) {
+      this.userAddress = `${userAddress.street}, ${userAddress.city}, ${userAddress.state}, ${userAddress.postalCode}`;
+    }
+    console.log('User Info:', userData);
   }
 
   tokenizeCard(): void {

@@ -1,5 +1,11 @@
 <div class="container">
-  <h1>Checkout</h1>
+  <h1>Checkout Information</h1>
+
+  <!-- Display user name and address -->
+  <div *ngIf="userName && userAddress">
+    <h2><strong>Name:</strong> {{ userName }}</h2>
+    <h3><strong>Address:</strong> {{ userAddress }}</h3>
+  </div>
 
   <!-- Display total amount -->
   <div *ngIf="totalAmount > 0">
