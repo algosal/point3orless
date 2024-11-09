@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,14 +12,18 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 export class CheckoutComponent implements OnInit {
   public nonce: string | null = null;
   public errorMessage: string | null = null;
+  public totalAmount: number = 0; // Track the total amount of the cart
 
   private card: any; // Track the card instance
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private cartService: CartService) {}
 
   ngOnInit(): void {
     // Dynamically load the Square.js script
     this.loadSquareScript();
+
+    // Calculate the total price based on the cart
+    this.calculateTotalAmount();
   }
 
   loadSquareScript(): void {
@@ -58,6 +63,15 @@ export class CheckoutComponent implements OnInit {
         console.error('Error loading Square Payment Form:', error);
         this.errorMessage = 'Error loading Square Payment Form.';
       });
+  }
+
+  calculateTotalAmount(): void {
+    const cartItems = this.cartService.getCartItems(); // Get the cart items from CartService
+    this.totalAmount = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    console.log('Total Amount:', this.totalAmount);
   }
 
   tokenizeCard(): void {

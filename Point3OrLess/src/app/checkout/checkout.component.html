@@ -1,20 +1,30 @@
 <div class="container">
-  <h1>Square Payment Test</h1>
+  <h1>Checkout</h1>
 
-  <!-- Card container for Square's card form -->
+  <!-- Display total amount -->
+  <div *ngIf="totalAmount > 0">
+    <h2>Total Amount: ${{ totalAmount.toFixed(2) }}</h2>
+  </div>
+
   <div id="card-container"></div>
 
-  <!-- Button to trigger nonce generation -->
-  <button id="pay-button" class="payment-button" (click)="tokenizeCard()">
-    Get Nonce
-  </button>
-
-  <!-- Display the generated nonce or error -->
-  <div *ngIf="nonce" class="nonce">
-    <p>Generated Nonce: {{ nonce }}</p>
-  </div>
-
-  <div *ngIf="errorMessage" class="error">
+  <!-- Display error message if any -->
+  <div *ngIf="errorMessage" class="error-message">
     <p>{{ errorMessage }}</p>
   </div>
+
+  <!-- Check if amount is above 3000 cents -->
+  <div *ngIf="totalAmount >= 3000; else belowAmount">
+    <!-- Only show the Pay Now button if the amount is above 3000 -->
+    <button id="pay-button" class="payment-button" (click)="tokenizeCard()">
+      Pay Now
+    </button>
+  </div>
+
+  <!-- Message for when amount is below 3000 -->
+  <ng-template #belowAmount>
+    <p class="error-message">
+      The total amount must be above $3,000.00 to proceed with payment.
+    </p>
+  </ng-template>
 </div>
