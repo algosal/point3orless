@@ -38,41 +38,56 @@
       name="state"
       placeholder="State"
       required
+      maxlength="2"
     />
 
     @if (state.trim() === '') {
     <div class="error">
       <small>State is required.</small>
     </div>
+    } @if (isStateInvalid() && state.trim() !== '') {
+    <div class="error">
+      <small
+        >State must contain only letters and be at most 2 characters.</small
+      >
+    </div>
     }
 
-    <label for="postalCode">Postal Code</label>
+    <label for="zip">Zip Code</label>
     <input
-      id="postalCode"
+      id="zip"
       [(ngModel)]="postalCode"
-      name="postalCode"
-      placeholder="Postal Code"
+      name="zip"
+      placeholder="Zip Code"
+      maxlength="5"
       required
     />
 
     @if (postalCode.trim() === '') {
     <div class="error">
-      <small>Postal code is required.</small>
+      <small>Zip code is required.</small>
     </div>
     }
 
-    <label for="country">Country</label>
+    <label for="phone">Phone Number</label>
     <input
-      id="country"
-      [(ngModel)]="country"
-      name="country"
-      placeholder="Country"
+      id="phone"
+      [(ngModel)]="phoneNumber"
+      name="phone"
+      placeholder="Phone Number"
       required
+      maxlength="10"
+      pattern="[0-9]*"
+      inputmode="numeric"
     />
 
-    @if (country.trim() === '') {
+    @if (phoneNumber.trim() === '') {
     <div class="error">
-      <small>Country is required.</small>
+      <small>Phone number is required.</small>
+    </div>
+    } @if (isPhoneNumberInvalid() && phoneNumber.trim() !== '') {
+    <div class="error">
+      <small>Phone number must be 10 digits.</small>
     </div>
     }
 

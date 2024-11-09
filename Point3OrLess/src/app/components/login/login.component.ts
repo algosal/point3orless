@@ -39,12 +39,15 @@ export class LoginComponent {
       this.userService.login(this.loginForm.value).subscribe(
         (response) => {
           if (response.statusCode === 200) {
-            console.log('User logged in successfully', response);
+            // console.log('User logged in successfully', response);
+            console.log(JSON.parse(response.body).token);
 
-            console.log(response.user);
+            let sessionToken = JSON.parse(response.body).token;
+            this.userInfoService.setSessionToaken(sessionToken);
+            // console.log(response.user);
             this.userInfoService.setUserData(response.user); // Set user information
-            console.log(this.userInfoService.getUserData());
-
+            // console.log(this.userInfoService.getUserData());
+            console.log(this.userInfoService.getSessionToken());
             // Check if the user is approved
             if (response.user.isApproved === 'No') {
               this.router.navigate(['/business-profile']); // Navigate to the business profile

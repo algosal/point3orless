@@ -5,9 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class UserInfoService {
   private userData: any = null;
+  private sessionToken: string = '';
 
   constructor() {}
+  //set token
 
+  setSessionToaken(token: string) {
+    this.sessionToken = token;
+  }
+
+  getSessionToken() {
+    return this.sessionToken;
+  }
   // Set entire user data object
   setUserData(data: any): void {
     this.userData = data;

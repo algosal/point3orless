@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Square Payment Test</h1>
+
+  <!-- Card container for Square's card form -->
+  <div id="card-container"></div>
+
+  <!-- Button to trigger nonce generation -->
+  <button id="pay-button" class="payment-button" (click)="tokenizeCard()">
+    Get Nonce
+  </button>
+
+  <!-- Display the generated nonce or error -->
+  <div *ngIf="nonce" class="nonce">
+    <p>Generated Nonce: {{ nonce }}</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

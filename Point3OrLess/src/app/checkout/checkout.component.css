@@ -1,0 +1,29 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.payment-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 32px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.payment-button:hover {
+  background-color: #45a049;
+}
+
+.nonce {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.error {
+  margin-top: 20px;
+  color: red;
+  font-size: 16px;
+}

@@ -1,35 +1,61 @@
 import { Component } from '@angular/core';
-import { UserInfoService } from '../../service/user-info.service';
 import { FormsModule } from '@angular/forms';
+import { UserInfoService } from '../../service/user-info.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address-form',
+  standalone: true,
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.css'],
-  standalone: true, // Marking the component as standalone
   imports: [FormsModule],
 })
 export class AddressFormComponent {
-  street: string = '';
-  city: string = '';
-  state: string = '';
-  postalCode: string = '';
-  country: string = '';
+  street = '';
+  city = '';
+  state = '';
+  postalCode = '';
+  phoneNumber = '';
 
-  constructor(private userInfoService: UserInfoService) {}
+  constructor(
+    private userInfoService: UserInfoService,
+    private router: Router
+  ) {}
 
-  onSubmit(): void {
-    const addressData = {
-      street: this.street,
-      city: this.city,
-      state: this.state,
-      postalCode: this.postalCode,
-      country: this.country,
-    };
-    this.userInfoService.setUserData({
-      ...this.userInfoService.getUserData(),
-      address: addressData,
-    });
-    console.log('Address submitted:', addressData);
+  isStateInvalid(): boolean {
+    return this.state.length > 2 || !/^[A-Za-z]*$/.test(this.state);
+  }
+
+  isPhoneNumberInvalid(): boolean {
+    return !/^[0-9]{10}$/.test(this.phoneNumber);
+  }
+
+  onSubmit() {
+    if (
+      this.street.trim() &&
+      this.city.trim() &&
+      !this.isStateInvalid() &&
+      this.postalCode.trim() &&
+      !this.isPhoneNumberInvalid()
+    ) {
+      // Handle valid form submission
+      console.log('Form submitted:', {
+        street: this.street,
+        city: this.city,
+        state: this.state,
+        postalCode: this.postalCode,
+        phoneNumber: this.phoneNumber,
+      });
+
+      this.userInfoService.setUserAddress({
+        street: this.street,
+        city: this.city,
+        state: this.state,
+        postalCode: this.postalCode,
+        phoneNumber: this.phoneNumber,
+      });
+
+      this.router.navigate(['checkout']);
+    }
   }
 }

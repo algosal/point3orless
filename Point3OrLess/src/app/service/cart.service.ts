@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CartService {
   private cart: any[] = []; // Initialize the cart as an empty array
+  private userData: any = null;
 
   constructor() {}
 
@@ -47,5 +48,16 @@ export class CartService {
         this.removeFromCart(productId); // Remove the product if quantity is 0 or less
       }
     }
+  }
+
+  // Set only the address section of userData
+  setUserAddress(address: any): void {
+    if (!this.userData) this.userData = {};
+    this.userData = { ...this.userData, address }; // Set the address in userData
+    console.log('User address updated:', address);
+  }
+  // Get just the user’s address
+  getUserAddress(): any {
+    return this.userData?.address;
   }
 }
