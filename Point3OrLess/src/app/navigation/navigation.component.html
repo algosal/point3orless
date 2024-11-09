@@ -13,22 +13,34 @@
           >
         </li>
         <li class="navigation-item">
-          @if(isLoggedIn){
-          <ng-container>
+          <ng-container *ngIf="isLoggedIn">
             <a class="navigation-link" (click)="logOff()">Log off</a>
             <a class="navigation-link" (click)="navigate('/business-profile')"
               >Profile</a
             >
           </ng-container>
-          } @else{
-          <a class="navigation-link" (click)="navigate('/login')">Log in</a>
-          <a class="navigation-link" (click)="navigate('/register')"
-            >Register</a
-          >
-          }
+          <ng-container *ngIf="!isLoggedIn">
+            <a class="navigation-link" (click)="navigate('/login')">Log in</a>
+            <a class="navigation-link" (click)="navigate('/register')"
+              >Register</a
+            >
+          </ng-container>
         </li>
         <li class="navigation-item">
           <a class="navigation-link" (click)="navigate('/contact')">Contact</a>
+        </li>
+
+        <!-- Cart Icon with Badge -->
+        <li class="navigation-item">
+          <a class="navigation-link" (click)="navigate('/cart')">
+            <span class="cart-icon">
+              🛒
+              <!-- Cart badge that shows the number of items in the cart -->
+              <span *ngIf="cartItemCount > 0" class="cart-badge">{{
+                cartItemCount
+              }}</span>
+            </span>
+          </a>
         </li>
       </ul>
     </nav>

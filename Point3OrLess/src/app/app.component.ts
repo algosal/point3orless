@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 // import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserInfoService } from './service/user-info.service';
+import { CartService } from './service/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -27,15 +29,28 @@ import { UserInfoService } from './service/user-info.service';
 })
 export class AppComponent {
   title = 'Point3OrLess';
+  cartItemCount: number = 0; // Store the cart item count
+  private cartSubscription: Subscription | null = null; // Initialize with null
 
-  ngOnInit() {}
   constructor(
     private router: Router,
-    private userInforService: UserInfoService
+    private userInforService: UserInfoService,
+    private cartService: CartService
   ) {}
+  ngOnInit() {
+    // Subscribe to the cartItems$ observable to track changes in the cart
+    this.cartSubscription = this.cartService.cartItems$.subscribe(
+      (cartItems) => {
+        this.cartItemCount = this.cartService.getCartItemCount(); // Update cart count
+      }
+    );
+  }
 
-  navigate(path: string) {
-    this.router.navigate([path]);
+  ngOnDestroy() {
+    // Unsubscribe from the cartItems$ observable when the component is destroyed
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
   }
 
   navigateToProfile(path: string) {
@@ -44,5 +59,12 @@ export class AppComponent {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  // Method to calculate the cart count
+  updateCartCount(): void {
+    this.cartItemCount = this.cartService
+      .getCartItems()
+      .reduce((total, item) => total + item.quantity, 0);
   }
 }

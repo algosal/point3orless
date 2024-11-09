@@ -6,14 +6,16 @@
 </header>
 
 <div class="nav-wrapper">
-  <!-- <div class="my-cart">🛒</div> -->
-
-  <div class="my-cart" (click)="navigate('cart')">
-    <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24">
+  <div class="my-cart" (click)="navigateToProfile('cart')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1 24 24">
       <path
         d="M7 4v1H3v2h2l3.6 7.59L7 19h10v-2H9l-1.45-3h7.88l1.32-2H9.14l-.3-.68L7 4zm0 2h8l1 2h-1.45l-1.45-2H7v2zm-1 8h10l1 1H6l1-1zM5 20a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"
       />
     </svg>
+    <!-- Display cart item count if there are items in the cart -->
+    <span *ngIf="cartItemCount > 0" class="cart-count">{{
+      cartItemCount
+    }}</span>
   </div>
   <div class="my-profile" (click)="navigateToProfile('/business-profile')">
     P
@@ -26,16 +28,8 @@
   </button>
 </div>
 
-<!-- Spacer div -->
 <div class="header-spacer"></div>
 
-<!-- @if(showLoginButton == true){
-
-<button utton class="login-button" (click)="navigate('/login')">Login</button>
-} -->
-
 <router-outlet></router-outlet>
-
-<!-- Use the standalone navigation component -->
 
 <app-navigation #nav></app-navigation>

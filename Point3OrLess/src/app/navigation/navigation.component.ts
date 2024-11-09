@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from '../service/cart.service';
 import { UserInfoService } from '../service/user-info.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
+  imports: [NgIf],
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   isModalOpen: boolean = false;
-  isLoggedIn: boolean = false; // Initialize a variable to check login status
+  isLoggedIn: boolean = false;
+  cartItemCount: number = 0;
 
   constructor(
     private router: Router,
@@ -18,9 +22,16 @@ export class NavigationComponent {
   ) {}
 
   ngOnInit() {
-    // Check if the user is logged in
-    console.log('Navi');
     this.isLoggedIn = this.userInfoService.getUserData() !== null;
+
+    // // Subscribe to cart changes to get the latest cart item count
+    // this.cartService.cartItems$.subscribe((cartItems) => {
+    //   this.cartItemCount = this.cartService.getCartItemCount();
+    //   console.log('Cart count updated:', this.cartItemCount); // Debugging line
+
+    //   // Manually trigger change detection to update the UI
+    //   this.cdr.detectChanges();
+    // });
   }
 
   openModal() {
@@ -34,13 +45,12 @@ export class NavigationComponent {
 
   navigate(path: string) {
     this.router.navigate([path]);
-    this.closeModal(); // Close the modal after navigation
+    this.closeModal();
   }
 
   logOff() {
-    // Logic for logging off the user
-    this.userInfoService.setUserData(null); // Clear user data
-    this.isLoggedIn = false; // Update the login status
-    this.router.navigate(['/login']); // Redirect to login
+    this.userInfoService.setUserData(null);
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 }

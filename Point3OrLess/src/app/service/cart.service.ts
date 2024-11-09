@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private cart: any[] = []; // Initialize the cart as an empty array
-  private userData: any = null;
+  private cartSubject = new BehaviorSubject<any[]>(this.cart); // Subject to notify changes
+  cartItems$ = this.cartSubject.asObservable(); // Observable for other components to subscribe
 
   constructor() {}
 
@@ -21,7 +23,7 @@ export class CartService {
       this.cart.push({ ...product, quantity: product.quantity });
     }
 
-    console.log('Cart updated:', this.cart);
+    this.cartSubject.next(this.cart); // Emit updated cart
   }
 
   // Method to get the cart items
@@ -32,11 +34,13 @@ export class CartService {
   // Method to remove a product from the cart
   removeFromCart(productId: string): void {
     this.cart = this.cart.filter((item) => item.id !== productId);
+    this.cartSubject.next(this.cart); // Emit updated cart
   }
 
   // Optional: Method to clear the cart
   clearCart(): void {
     this.cart = [];
+    this.cartSubject.next(this.cart); // Emit updated cart
   }
 
   // Optional: Method to decrease quantity
@@ -50,14 +54,8 @@ export class CartService {
     }
   }
 
-  // Set only the address section of userData
-  setUserAddress(address: any): void {
-    if (!this.userData) this.userData = {};
-    this.userData = { ...this.userData, address }; // Set the address in userData
-    console.log('User address updated:', address);
-  }
-  // Get just the user’s address
-  getUserAddress(): any {
-    return this.userData?.address;
+  // Get the total quantity of items in the cart
+  getCartItemCount(): number {
+    return this.cart.reduce((total, item) => total + item.quantity, 0);
   }
 }
