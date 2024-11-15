@@ -64,4 +64,11 @@ export class LoginComponent {
       );
     }
   }
+
+  changePassword(): void {
+    window.open('https://point3orless.com/reset/index.html', '_blank');
+  }
+  registerForP3OL() {
+    this.router.navigate(['/register']);
+  }
 }

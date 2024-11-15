@@ -142,7 +142,28 @@ h2.total-amount {
   }
 }
 
-/* Add this to your component's CSS file */
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  min-width: 300px;
+}
+
+/* Try Again Button */
 .try-again-button {
   background-color: #ff5c5c; /* Red background */
   color: white;
@@ -161,4 +182,17 @@ h2.total-amount {
 .try-again-button:disabled {
   background-color: #ddd; /* Disabled state */
   cursor: not-allowed;
+}
+.navigate-btn {
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.navigate-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
 }

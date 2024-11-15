@@ -19,7 +19,7 @@
   </div>
 
   <!-- Pay Button -->
-  <div *ngIf="totalAmount >= 3000; else belowAmount">
+  <div *ngIf="totalAmount >= dynamicPriceRestriction; else belowAmount">
     <button
       id="pay-button"
       class="payment-button"
@@ -32,13 +32,14 @@
 
   <ng-template #belowAmount>
     <p class="error-message">
-      The total amount must be above $3,000.00 to proceed with payment.
+      The total amount must be above ${{ dynamicPriceRestriction }} to proceed
+      with payment.
     </p>
   </ng-template>
 
   <!-- Cart Items -->
   <div *ngIf="cartItems.length > 0">
-    <h2>Cart Items</h2>
+    <h2 class="cart-header">Cart Items</h2>
     <div class="cart-item" *ngFor="let item of cartItems">
       <p>
         <strong>{{ item.name }}</strong>
@@ -49,13 +50,6 @@
   </div>
 
   <!-- Payment Modal -->
-  <!-- <div *ngIf="isPaymentProcessing" class="modal">
-    <div class="modal-content">
-      <h2>Processing Payment...</h2>
-      <p>Please wait while we charge your credit card.</p>
-      <p>Time remaining: {{ countdown }} seconds</p>
-    </div>
-  </div> -->
   <div *ngIf="isPaymentProcessing" class="modal">
     <div class="modal-content">
       <h2>Processing Payment...</h2>
@@ -64,21 +58,12 @@
     </div>
   </div>
 
-  <!-- Show the "Go to Home" button once payment processing is done -->
-  <div *ngIf="!isPaymentProcessing && isPaymentSuccessful" class="modal">
-    <div class="modal-content">
-      <h2>Payment Successful</h2>
-      <p>Your payment was successful!</p>
-      <button class="go-home-button" (click)="goToHome()">Go to Home</button>
-    </div>
-  </div>
-
   <!-- Success/Failure Modal -->
   <div *ngIf="isPaymentSuccessful !== null" class="modal">
     <div class="modal-content">
       <h2>
         {{
-          isPaymentSuccessful ? "Payment Successful!" : "Payment Unsuccessful"
+          isPaymentSuccessful ? "Payment Successful" : "Payment Unsuccessful"
         }}
       </h2>
       <p>
@@ -88,32 +73,21 @@
             : "Please try again."
         }}
       </p>
-      <button *ngIf="!isPaymentSuccessful" (click)="tryAgain()">
+      <!-- Add this button below your payment section, or wherever appropriate in your HTML template -->
+      <button
+        *ngIf="isPaymentSuccessful"
+        (click)="navigateToSuccessPage()"
+        class="navigate-btn"
+      >
+        Go to Home Page
+      </button>
+      <button
+        *ngIf="!isPaymentSuccessful"
+        (click)="tryAgain()"
+        class="navigate-btn"
+      >
         Try Again
       </button>
     </div>
   </div>
 </div>
-
-<!-- Modal Styles -->
-<style>
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    min-width: 300px;
-  }
-</style>

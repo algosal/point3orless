@@ -3,6 +3,8 @@ import { CartService } from '../service/cart.service';
 import { UserInfoService } from '../service/user-info.service';
 import { PaymentService } from '../service/payment.service';
 import { NgFor, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+import { PriceService } from '../service/dynamic-price-restriction.service';
 
 @Component({
   selector: 'app-checkout',
@@ -18,18 +20,22 @@ export class CheckoutComponent implements OnInit {
   public userName: string = '';
   public userAddress: string = '';
   public cartItems: any[] = [];
-  public countdown: number = 10; // 10 seconds countdown for payment
+  public countdown: number = 30; // 10 seconds countdown for payment
   public isPaymentProcessing: boolean = false; // Flag to indicate if payment is processing
   public isPaymentSuccessful: boolean | null = null; // null, true, or false based on payment status
+  public dynamicPriceRestriction: number = 0;
   userData = { email: '' };
   userPhone = '';
   private card: any;
+  private timer: any = null;
 
   constructor(
     private renderer: Renderer2,
     private cartService: CartService,
     private userInfoService: UserInfoService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private router: Router,
+    private priceService: PriceService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +43,22 @@ export class CheckoutComponent implements OnInit {
     this.loadUserInfo();
     this.cartItems = this.cartService.getCartItems();
     this.calculateTotalAmount();
+    this.fetchLatestPrice();
+  }
+  fetchLatestPrice(): void {
+    this.priceService.getLatestPrice().subscribe({
+      next: (price_restriction) => {
+        this.dynamicPriceRestriction = price_restriction;
+        console.log(
+          'Fetched Dynamic Price Restriction: ',
+          this.dynamicPriceRestriction
+        );
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+        console.error('Error fetching dynamic price restriction:', error);
+      },
+    });
   }
 
   loadSquareScript(): void {
@@ -97,10 +119,10 @@ export class CheckoutComponent implements OnInit {
 
   startCountdown(): void {
     this.isPaymentProcessing = true;
-    const timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.countdown--;
       if (this.countdown === 0) {
-        clearInterval(timer);
+        clearInterval(this.timer);
       }
     }, 1000);
   }
@@ -111,15 +133,21 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    this.startCountdown();
+    // Check if totalAmount is greater than or equal to 3000
+    if (this.totalAmount < this.dynamicPriceRestriction) {
+      this.errorMessage =
+        'The total amount must be at least $3,000 to proceed.';
+      return;
+    }
+
     this.card
       .tokenize()
       .then((result: any) => {
         if (result.status === 'OK') {
           this.nonce = result.token;
-          this.nonce = 'cnon:card-nonce-ok';
           console.log('Nonce:', this.nonce);
           this.sendToCharge(this.nonce);
+          this.startCountdown();
         } else {
           this.errorMessage = result.errors[0].message;
         }
@@ -152,7 +180,7 @@ export class CheckoutComponent implements OnInit {
           setTimeout(() => {
             this.cartService.clearCart(); // Clear cart after successful payment
             this.navigateToSuccessPage();
-          }, 1000); // Navigate after short delay
+          }, 2000); // Navigate after short delay
         } else {
           this.isPaymentSuccessful = false;
         }
@@ -166,12 +194,14 @@ export class CheckoutComponent implements OnInit {
 
   navigateToSuccessPage() {
     alert('We Will Navigate now');
+    this.router.navigate(['/']);
     // Implement your navigation logic to the success page
   }
 
   tryAgain() {
     this.isPaymentProcessing = false;
     this.isPaymentSuccessful = null;
-    this.countdown = 10;
+    this.countdown = 30;
+    clearInterval(this.timer);
   }
 }
