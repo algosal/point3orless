@@ -1,0 +1,105 @@
+{
+  "email": "salman@salmansaeed.us",
+  "price": 3926,
+  "cnonce": "cnon:card-nonce-ok",
+  "status": "COMPLETED",
+  "address": "2141 Belmont Ave, Bronx, NY, 10457",
+  "raw_data": {
+    "user": {
+      "Data": {
+        "role": "client",
+        "email": "salman@salmansaeed.us",
+        "terms": true,
+        "gender": "male",
+        "address": {
+          "city": "Bronx",
+          "state": "NY",
+          "street": "2141 Belmont Ave",
+          "postalCode": "10457",
+          "phoneNumber": "3473257227"
+        },
+        "isActive": "Yes",
+        "lastName": "Saeed",
+        "firstName": "Salman",
+        "timestamp": "2024-10-09T19:36:54.463986",
+        "isApproved": "Yes",
+        "dateOfBirth": "1981-01-05"
+      },
+      "name": "Salman Saeed",
+      "email": "salman@salmansaeed.us",
+      "phone": "3473257227",
+      "address": "2141 Belmont Ave, Bronx, NY, 10457"
+    },
+    "order": [
+      {
+        "id": "850015842283",
+        "name": "NG CBD Gums WB  1350MG",
+        "price": 60,
+        "quantity": 13
+      },
+      {
+        "id": "631145833385",
+        "name": "NG CBD Oil 5000MG",
+        "price": 110,
+        "quantity": 26
+      },
+      {
+        "id": "803954301366",
+        "name": "AV Veilm CBD Bdy Crm",
+        "price": 22,
+        "quantity": 13
+      }
+    ],
+    "cnonce": "cnon:card-nonce-ok",
+    "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbG1hbkBzYWxtYW5zYWVlZC51cyJ9.5g4N4lyDqNy-y4q6yxjFMARIs_3pBiuUi1ZswVckoZA",
+    "totalPrice": 3926
+  },
+  "client_name": "Salman Saeed",
+  "receipt_url": "https://squareupsandbox.com/receipt/preview/hKhyyT3MBCOfz4DSPFEgVMLw4XBZY",
+  "phone_number": "3473257227",
+  "square_object": {
+    "success": true,
+    "square_object": {
+      "payment": {
+        "id": "hKhyyT3MBCOfz4DSPFEgVMLw4XBZY",
+        "status": "COMPLETED",
+        "orderId": "z35K7u6zCQUOgZqoeN30b1cmbOQZY",
+        "createdAt": "2024-11-12T18:34:37.100Z",
+        "updatedAt": "2024-11-12T18:34:37.319Z",
+        "locationId": "LZX4AARBRAE18",
+        "receiptUrl": "https://squareupsandbox.com/receipt/preview/hKhyyT3MBCOfz4DSPFEgVMLw4XBZY",
+        "sourceType": "CARD",
+        "totalMoney": { "amount": "3926", "currency": "USD" },
+        "amountMoney": { "amount": "3926", "currency": "USD" },
+        "cardDetails": {
+          "card": {
+            "bin": "453275",
+            "last4": "5858",
+            "expYear": "2026",
+            "cardType": "CREDIT",
+            "expMonth": "11",
+            "cardBrand": "VISA",
+            "fingerprint": "sq-1-gJ9AKoysIJpdRff8jotCONkpS5_0QUC5h4yza3d0EWOsInoEmYaeillqlEX7c_8pfw",
+            "prepaidType": "NOT_PREPAID"
+          },
+          "status": "CAPTURED",
+          "avsStatus": "AVS_ACCEPTED",
+          "cvvStatus": "CVV_ACCEPTED",
+          "entryMethod": "KEYED",
+          "cardPaymentTimeline": {
+            "capturedAt": "2024-11-12T18:34:37.319Z",
+            "authorizedAt": "2024-11-12T18:34:37.223Z"
+          },
+          "statementDescription": "SQ *DEFAULT TEST ACCOUNT"
+        },
+        "approvedMoney": { "amount": "3926", "currency": "USD" },
+        "applicationDetails": {
+          "applicationId": "sandbox-sq0idb-91Z1QfCAP-MnIVnZ8TsdAw",
+          "squareProduct": "ECOMMERCE_API"
+        }
+      }
+    },
+    "payment_confirmation": "COMPLETED"
+  },
+  "payment_confirmation": "z35K7u6zCQUOgZqoeN30b1cmbOQZY"
+}

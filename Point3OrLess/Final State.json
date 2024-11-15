@@ -1,0 +1,49 @@
+{
+  "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbG1hbkBzYWxtYW5zYWVlZC51cyJ9.5g4N4lyDqNy-y4q6yxjFMARIs_3pBiuUi1ZswVckoZA",
+  "user": {
+    "name": "Salman Saeed",
+    "email": "salman@salmansaeed.us",
+    "phone": "3473257227",
+    "address": "2141 Belmont Ave, Bronx, NY, 10457",
+    "Data": {
+      "terms": true,
+      "isActive": "Yes",
+      "isApproved": "Yes",
+      "role": "client",
+      "lastName": "Saeed",
+      "timestamp": "2024-10-09T19:36:54.463986",
+      "dateOfBirth": "1981-01-05",
+      "email": "salman@salmansaeed.us",
+      "firstName": "Salman",
+      "gender": "male",
+      "address": {
+        "street": "2141 Belmont Ave",
+        "city": "Bronx",
+        "state": "NY",
+        "postalCode": "10457",
+        "phoneNumber": "3473257227"
+      }
+    }
+  },
+  "order": [
+    {
+      "id": "850015842283",
+      "name": "NG CBD Gums WB  1350MG",
+      "quantity": 13,
+      "price": 60
+    },
+    {
+      "id": "631145833385",
+      "name": "NG CBD Oil 5000MG",
+      "quantity": 26,
+      "price": 110
+    },
+    {
+      "id": "803954301366",
+      "name": "AV Veilm CBD Bdy Crm",
+      "quantity": 13,
+      "price": 22
+    }
+  ],
+  "cnonce": "cnon:CA4SECs_zPj2q_WG85t25uizvY8YASgC"
+}
