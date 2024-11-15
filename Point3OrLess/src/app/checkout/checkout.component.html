@@ -1,36 +1,119 @@
 <div class="container">
   <h1>Checkout Information</h1>
 
-  <!-- Display user name and address -->
+  <!-- User Info -->
   <div *ngIf="userName && userAddress">
     <h2><strong>Name:</strong> {{ userName }}</h2>
     <h3><strong>Address:</strong> {{ userAddress }}</h3>
   </div>
 
-  <!-- Display total amount -->
   <div *ngIf="totalAmount > 0">
     <h2>Total Amount: ${{ totalAmount.toFixed(2) }}</h2>
   </div>
 
   <div id="card-container"></div>
 
-  <!-- Display error message if any -->
+  <!-- Error Message -->
   <div *ngIf="errorMessage" class="error-message">
     <p>{{ errorMessage }}</p>
   </div>
 
-  <!-- Check if amount is above 3000 cents -->
+  <!-- Pay Button -->
   <div *ngIf="totalAmount >= 3000; else belowAmount">
-    <!-- Only show the Pay Now button if the amount is above 3000 -->
-    <button id="pay-button" class="payment-button" (click)="tokenizeCard()">
+    <button
+      id="pay-button"
+      class="payment-button"
+      (click)="tokenizeCard()"
+      [disabled]="isPaymentProcessing"
+    >
       Pay Now
     </button>
   </div>
 
-  <!-- Message for when amount is below 3000 -->
   <ng-template #belowAmount>
     <p class="error-message">
       The total amount must be above $3,000.00 to proceed with payment.
     </p>
   </ng-template>
+
+  <!-- Cart Items -->
+  <div *ngIf="cartItems.length > 0">
+    <h2>Cart Items</h2>
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <p>
+        <strong>{{ item.name }}</strong>
+      </p>
+      <p>Quantity: {{ item.quantity }}</p>
+      <p>Price: ${{ (item.price * item.quantity).toFixed(2) }}</p>
+    </div>
+  </div>
+
+  <!-- Payment Modal -->
+  <!-- <div *ngIf="isPaymentProcessing" class="modal">
+    <div class="modal-content">
+      <h2>Processing Payment...</h2>
+      <p>Please wait while we charge your credit card.</p>
+      <p>Time remaining: {{ countdown }} seconds</p>
+    </div>
+  </div> -->
+  <div *ngIf="isPaymentProcessing" class="modal">
+    <div class="modal-content">
+      <h2>Processing Payment...</h2>
+      <p>Please wait while we charge your credit card.</p>
+      <p>Time remaining: {{ countdown }} seconds</p>
+    </div>
+  </div>
+
+  <!-- Show the "Go to Home" button once payment processing is done -->
+  <div *ngIf="!isPaymentProcessing && isPaymentSuccessful" class="modal">
+    <div class="modal-content">
+      <h2>Payment Successful</h2>
+      <p>Your payment was successful!</p>
+      <button class="go-home-button" (click)="goToHome()">Go to Home</button>
+    </div>
+  </div>
+
+  <!-- Success/Failure Modal -->
+  <div *ngIf="isPaymentSuccessful !== null" class="modal">
+    <div class="modal-content">
+      <h2>
+        {{
+          isPaymentSuccessful ? "Payment Successful!" : "Payment Unsuccessful"
+        }}
+      </h2>
+      <p>
+        {{
+          isPaymentSuccessful
+            ? "Your payment has been approved."
+            : "Please try again."
+        }}
+      </p>
+      <button *ngIf="!isPaymentSuccessful" (click)="tryAgain()">
+        Try Again
+      </button>
+    </div>
+  </div>
 </div>
+
+<!-- Modal Styles -->
+<style>
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 300px;
+  }
+</style>

@@ -59,6 +59,11 @@ export class ProductComponent implements OnInit {
     product.quantity++;
   }
 
+  // Increase quantity
+  increaseQuantityBy12(product: any): void {
+    product.quantity = product.quantity + 12;
+  }
+
   // Add product to cart using CartService
   addToCart(product: any): void {
     console.log('in the add to cart');
@@ -69,6 +74,7 @@ export class ProductComponent implements OnInit {
       price: product.wholesalePrice,
     });
     console.log(`Added ${product.quantity} of ${product.name} to the cart`);
+    product.quantity = 1;
   }
 
   // Navigate to cart page

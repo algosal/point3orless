@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PaymentService {
-  private apiUrl = 'https://your-backend.com/api/payment'; // Replace with your backend API endpoint
+  private apiUrl =
+    'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/credit-card-state-machine-sync'; // Replace with your backend API endpoint
 
   constructor(private http: HttpClient) {}
 
-  processPayment(nonce: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { nonce }); // Send the nonce to the backend for processing
+  processPayment(FirstState: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, FirstState); // Send the nonce to the backend for processing
   }
 }

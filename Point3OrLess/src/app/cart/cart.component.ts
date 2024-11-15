@@ -66,4 +66,7 @@ export class CartComponent implements OnInit {
       console.log('Cart is empty, cannot proceed to checkout.');
     }
   }
+  keepShopping() {
+    this.router.navigate(['/products']);
+  }
 }

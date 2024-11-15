@@ -13,9 +13,13 @@
       />
     </svg>
     <!-- Display cart item count if there are items in the cart -->
-    <span *ngIf="cartItemCount > 0" class="cart-count">{{
-      cartItemCount
-    }}</span>
+    <span *ngIf="cartItemCount > 0" class="cart-count">
+      {{ cartItemCount }}
+    </span>
+    <!-- Display the total amount on the cart icon if there are items in the cart -->
+    <span *ngIf="cartItemCount > 0" class="cart-total">
+      ${{ cartTotalAmount.toFixed(2) }}
+    </span>
   </div>
   <div class="my-profile" (click)="navigateToProfile('/business-profile')">
     P

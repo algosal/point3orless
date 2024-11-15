@@ -30,7 +30,8 @@
   margin: 10px 0;
 }
 
-.quantity-button {
+.quantity-button,
+.quantity-button-12 {
   background-color: #4caf50;
   color: white;
   padding: 10px;
@@ -38,6 +39,9 @@
   cursor: pointer;
   border-radius: 4px;
   font-size: 16px;
+}
+.quantity-button-12 {
+  margin-left: 5px;
 }
 
 .quantity-button:hover {

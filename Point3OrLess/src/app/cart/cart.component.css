@@ -49,10 +49,14 @@ button:hover {
   background-color: #76a763; /* Darker green on hover */
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
 .clear-cart-btn,
-.checkout-btn {
-  display: block;
-  width: 100%;
+.checkout-btn,
+.keep-shopping-btn {
+  width: 30%;
   margin: 20px 0 0;
   padding: 8px;
   font-weight: bold;

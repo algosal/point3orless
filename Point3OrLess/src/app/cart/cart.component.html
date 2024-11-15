@@ -14,10 +14,16 @@
 
   <h3>Total: {{ totalAmount | currency }}</h3>
 
-  <button class="clear-cart-btn" (click)="clearCart()">Clear Cart</button>
+  <div class="button-container">
+    <button class="clear-cart-btn" (click)="clearCart()">Clear Cart</button>
 
-  <!-- Add the Checkout button here -->
-  <button class="checkout-btn" (click)="checkout()">Checkout</button>
+    <button class="keep-shopping-btn" (click)="keepShopping()">
+      Keep Shopping
+    </button>
+
+    <!-- Add the Checkout button here -->
+    <button class="checkout-btn" (click)="checkout()">Checkout</button>
+  </div>
 </div>
 } @else {
 <p class="empty-cart-message">Your cart is empty.</p>

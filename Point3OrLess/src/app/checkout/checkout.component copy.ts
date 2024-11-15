@@ -1,8 +1,8 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CartService } from '../service/cart.service';
-import { UserInfoService } from '../service/user-info.service';
+import { UserInfoService } from '../service/user-info.service'; // Import the UserInfoService
 import { PaymentService } from '../service/payment.service';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-checkout',
@@ -14,28 +14,30 @@ import { NgFor, NgIf } from '@angular/common';
 export class CheckoutComponent implements OnInit {
   public nonce: string | null = null;
   public errorMessage: string | null = null;
-  public totalAmount: number = 0;
-  public userName: string = '';
-  public userAddress: string = '';
-  public cartItems: any[] = [];
-  public countdown: number = 10; // 10 seconds countdown for payment
-  public isPaymentProcessing: boolean = false; // Flag to indicate if payment is processing
-  public isPaymentSuccessful: boolean | null = null; // null, true, or false based on payment status
+  public totalAmount: number = 0; // Track the total amount of the cart
+  public userName: string = ''; // Track the user's name
+  public userAddress: string = ''; // Track the user's address
+  public cartItems: any[] = []; // Array to hold the cart items
   userData = { email: '' };
   userPhone = '';
-  private card: any;
+  private card: any; // Track the card instance
 
   constructor(
     private renderer: Renderer2,
     private cartService: CartService,
-    private userInfoService: UserInfoService,
+    private userInfoService: UserInfoService, // Inject UserInfoService
     private paymentService: PaymentService
   ) {}
 
   ngOnInit(): void {
+    // Dynamically load the Square.js script
     this.loadSquareScript();
+
+    // Get user info
     this.loadUserInfo();
-    this.cartItems = this.cartService.getCartItems();
+
+    // Get cart items and calculate the total price
+    this.cartItems = this.cartService.getCartItems(); // Get cart items from CartService
     this.calculateTotalAmount();
   }
 
@@ -57,15 +59,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   initializePaymentForm(): void {
-    const applicationId = 'sandbox-sq0idb-91Z1QfCAP-MnIVnZ8TsdAw';
-    const locationId = 'LZX4AARBRAE18';
+    const applicationId = 'sandbox-sq0idb-91Z1QfCAP-MnIVnZ8TsdAw'; // Your Square Application ID
+    const locationId = 'LZX4AARBRAE18'; // Your Square Location ID
     const payments = (window as any).Square.payments(applicationId, locationId);
 
     payments
       .card()
       .then((cardInstance: any) => {
-        this.card = cardInstance;
+        this.card = cardInstance; // Store the card instance
         this.card.attach('#card-container');
+
+        // Add event listener for when the card is successfully attached
         this.card.addEventListener('card:ready', () => {
           console.log('Card form attached successfully.');
         });
@@ -84,9 +88,10 @@ export class CheckoutComponent implements OnInit {
     console.log('Total Amount:', this.totalAmount);
   }
 
+  // Get user information from the UserInfoService
   loadUserInfo(): void {
     this.userData = this.userInfoService.getUserData();
-    this.userName = this.userInfoService.getUserName();
+    this.userName = this.userInfoService.getUserName(); // Get the user's full name
     const userAddress = this.userInfoService.getUserAddress();
     if (userAddress) {
       this.userAddress = `${userAddress.street}, ${userAddress.city}, ${userAddress.state}, ${userAddress.postalCode}`;
@@ -95,28 +100,18 @@ export class CheckoutComponent implements OnInit {
     console.log('User Info:', this.userData);
   }
 
-  startCountdown(): void {
-    this.isPaymentProcessing = true;
-    const timer = setInterval(() => {
-      this.countdown--;
-      if (this.countdown === 0) {
-        clearInterval(timer);
-      }
-    }, 1000);
-  }
-
   tokenizeCard(): void {
     if (!this.card) {
       this.errorMessage = 'Card is not initialized.';
       return;
     }
 
-    this.startCountdown();
+    // Tokenize only when the card is attached
     this.card
       .tokenize()
       .then((result: any) => {
         if (result.status === 'OK') {
-          this.nonce = result.token;
+          this.nonce = result.token; // Successfully got nonce
           this.nonce = 'cnon:card-nonce-ok';
           console.log('Nonce:', this.nonce);
           this.sendToCharge(this.nonce);
@@ -126,7 +121,6 @@ export class CheckoutComponent implements OnInit {
       })
       .catch((error: any) => {
         this.errorMessage = `Error during payment tokenization: ${error}`;
-        this.isPaymentProcessing = false;
       });
   }
 
@@ -146,32 +140,18 @@ export class CheckoutComponent implements OnInit {
     console.log(FullOrder);
     this.paymentService.processPayment(FullOrder).subscribe(
       (response) => {
+        // Log the response to the console
         console.log('Payment response:', response.body);
         if (JSON.parse(response.body).status == 'Payment Successful') {
-          this.isPaymentSuccessful = true;
-          setTimeout(() => {
-            this.cartService.clearCart(); // Clear cart after successful payment
-            this.navigateToSuccessPage();
-          }, 1000); // Navigate after short delay
+          alert('Credit Card Approved');
         } else {
-          this.isPaymentSuccessful = false;
+          alert('Credit Card Error');
         }
       },
       (error) => {
+        // Log any errors to the console
         console.error('Payment error:', error);
-        this.isPaymentSuccessful = false;
       }
     );
-  }
-
-  navigateToSuccessPage() {
-    alert('We Will Navigate now');
-    // Implement your navigation logic to the success page
-  }
-
-  tryAgain() {
-    this.isPaymentProcessing = false;
-    this.isPaymentSuccessful = null;
-    this.countdown = 10;
   }
 }

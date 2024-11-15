@@ -30,6 +30,8 @@ import { Subscription } from 'rxjs';
 export class AppComponent {
   title = 'Point3OrLess';
   cartItemCount: number = 0; // Store the cart item count
+  cartTotalAmount: number = 0; // Store the cart total amount
+
   private cartSubscription: Subscription | null = null; // Initialize with null
 
   constructor(
@@ -42,6 +44,7 @@ export class AppComponent {
     this.cartSubscription = this.cartService.cartItems$.subscribe(
       (cartItems) => {
         this.cartItemCount = this.cartService.getCartItemCount(); // Update cart count
+        this.updateCartTotalAmount(); // Update total amount
       }
     );
   }
@@ -66,5 +69,12 @@ export class AppComponent {
     this.cartItemCount = this.cartService
       .getCartItems()
       .reduce((total, item) => total + item.quantity, 0);
+  }
+
+  // Method to calculate the cart total amount
+  updateCartTotalAmount(): void {
+    this.cartTotalAmount = this.cartService
+      .getCartItems()
+      .reduce((total, item) => total + item.price * item.quantity, 0);
   }
 }
