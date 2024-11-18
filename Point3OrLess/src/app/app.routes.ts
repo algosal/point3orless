@@ -11,6 +11,8 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { authGuard } from './guards/auth.guard';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 
 export const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
@@ -24,6 +26,8 @@ export const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'address', component: AddressFormComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard] },
+  { path: 'orders', component: OrderListComponent },
+  { path: 'order-details/:id', component: OrderDetailComponent },
 
   // { path: '', redirectTo: '', pathMatch: 'full' },
 ];

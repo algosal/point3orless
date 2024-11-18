@@ -1,0 +1,41 @@
+<div *ngIf="orders.length > 0" class="orders-container">
+  <h2>Orders</h2>
+  <div class="order-card" *ngFor="let order of orders">
+    <div class="order-header">
+      <span class="order-date">Order Date: {{ order.created_at }}</span>
+    </div>
+    <div class="order-body">
+      <h3>{{ order.name }}</h3>
+      <p><strong>Email:</strong> {{ order.email }}</p>
+      <p><strong>Phone:</strong> {{ order.phone_number }}</p>
+      <p><strong>Address:</strong> {{ order.address }}</p>
+      <p><strong>Status:</strong> {{ order.status }}</p>
+      <p><strong>Price:</strong> {{ order.price | currency }}</p>
+    </div>
+    <div class="order-footer">
+      <div>
+        <strong>Payment Confirmation:</strong>
+        <input
+          type="text"
+          [value]="order.payment_confirmation"
+          readonly
+          class="payment-field"
+        />
+      </div>
+      <div class="button-container">
+        <a
+          href="{{ order.receipt_url }}"
+          class="receipt-button button"
+          target="_blank"
+          >Receipt</a
+        >
+        <button
+          class="details-button button"
+          (click)="goToOrderDetails(order.id)"
+        >
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

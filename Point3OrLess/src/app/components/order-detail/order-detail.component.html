@@ -1,0 +1,35 @@
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+<div class="order-details-container">
+  <button class="back-button" (click)="goBack()">&#8592; Back</button>
+
+  <div *ngIf="orderDetails.length > 0">
+    <h3>Order Details</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detail of orderDetails">
+          <td>{{ detail.product_name }}</td>
+          <td>{{ detail.product_price }}</td>
+          <td>{{ detail.quantity }}</td>
+          <td>{{ detail.product_price * detail.quantity }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="total-label">Grand Total</td>
+          <td class="total-value">
+            {{ totalAmount | currency }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

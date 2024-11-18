@@ -1,0 +1,133 @@
+/* Orders Container */
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1.5rem;
+  font-family: "Arial", sans-serif;
+}
+
+h2 {
+  color: #35654d;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+/* Order Card */
+.order-card {
+  background: #f5f8f3;
+  border: 1px solid #c7d2c4;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+  height: 100%;
+  position: relative; /* To ensure the buttons are at the bottom */
+}
+
+/* Order Header */
+.order-header {
+  background: #c7d2c4;
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: #2b3e31;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Order Body */
+.order-body h3 {
+  color: #2b3e31;
+  margin: 0;
+}
+
+.order-body p {
+  margin: 0.5rem 0;
+  color: #3a5741;
+}
+
+.order-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto; /* Push the footer to the bottom */
+}
+
+.payment-field {
+  border: 1px solid #a5b1a4;
+  background: #f2f7f0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  color: #2b3e31;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.error-message {
+  color: #e63946;
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+/* Shared Button Style */
+.button {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  width: auto; /* Ensures both buttons take up equal width */
+  min-width: 150px; /* Optional: Set a minimum width */
+  box-sizing: border-box;
+}
+
+/* Receipt Button */
+.receipt-button {
+  background: #4caf50;
+  text-decoration: none;
+}
+
+.receipt-button:hover {
+  background: #43a047;
+}
+
+/* Details Button */
+.details-button {
+  background: #0288d1;
+  text-decoration: none;
+  border: none;
+}
+
+.details-button:hover {
+  background: #0277bd;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: left;
+  gap: 1rem;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    align-items: center; /* Center the buttons */
+  }
+
+  .button {
+    width: 100%; /* Make buttons take full width on small screens */
+    margin-bottom: 1rem; /* Optional: add space between stacked buttons */
+  }
+}
