@@ -5,6 +5,17 @@
   gap: 2rem;
   margin: 1.5rem;
   font-family: "Arial", sans-serif;
+  /* position: relative; */
+}
+.shipment-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.shipping-info {
+  /* position: absolute; */
+  width: 100%;
+  padding-right: 1em;
+  text-align: right;
 }
 
 h2 {
@@ -39,7 +50,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-/* Order Body */
+/*Order Body */
 .order-body h3 {
   color: #2b3e31;
   margin: 0;
@@ -129,5 +140,12 @@ h2 {
   .button {
     width: 100%; /* Make buttons take full width on small screens */
     margin-bottom: 1rem; /* Optional: add space between stacked buttons */
+  }
+  .shipment-info-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .shipping-info {
+    text-align: left;
   }
 }

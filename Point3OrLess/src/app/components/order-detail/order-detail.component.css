@@ -16,7 +16,7 @@
   background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 800px;
-  overflow-x: auto;
+  overflow-x: auto; /* Enables horizontal scrolling for tables on small screens */
 }
 
 h3 {
@@ -44,11 +44,12 @@ th,
 td {
   text-align: left;
   padding: 10px 15px;
-  border-bottom: 1px solid #dcedc8;
+  border-bottom: 1px solid #a7df67;
+  word-wrap: break-word; /* Ensures content doesn't overflow */
 }
 
 tbody tr:nth-child(even) {
-  background: #e8f5e9;
+  background: #9de2c4;
 }
 
 tbody tr:nth-child(odd) {
@@ -61,7 +62,7 @@ tbody tr:hover {
 }
 
 tfoot tr {
-  background-color: #c8e6c9; /* Highlight total row */
+  background-color: #c8e6c9;
   font-weight: bold;
   text-align: right;
 }
@@ -76,6 +77,7 @@ tfoot tr {
   text-align: left;
   color: #1b5e20;
 }
+
 .back-button {
   display: inline-block;
   margin-bottom: 15px;
@@ -94,4 +96,101 @@ tfoot tr {
 
 .back-button:hover {
   background-color: #4caf50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-details-container {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+  tr {
+    width: 100%;
+  }
+  th,
+  td {
+    padding: 8px;
+  }
+
+  .total-label,
+  .total-value {
+    font-size: 14px; /* Adjust text size for totals */
+  }
+  .total-value-each {
+    color: blue;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  /* Ensure the table container is scrollable horizontally */
+  .order-details-container {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%; /* Ensure the table takes full width */
+    display: block; /* Makes the table scrollable horizontally */
+  }
+
+  thead {
+    display: none; /* Hide table headers */
+  }
+
+  tbody {
+    display: block;
+    width: 100%; /* Ensures the tbody is full width */
+  }
+
+  tbody tr {
+    display: block; /* Make each row a block-level element */
+    width: 100%; /* Ensure row takes up the full width of the table */
+    margin-bottom: 10px; /* Space between rows */
+  }
+
+  tbody td {
+    display: block; /* Convert td to block for mobile view */
+    width: 100%; /* Each td takes the full width */
+    padding: 8px; /* Padding inside each td */
+    border-bottom: 1px solid #dcedc8; /* Border for each td */
+    word-wrap: break-word;
+    text-align: right;
+    justify-content: right;
+    box-sizing: border-box;
+    padding-right: 34px;
+  }
+
+  /* Add labels before the cell data on small screens */
+  tbody td:before {
+    position: absolute;
+    content: attr(data-label); /* Show column name */
+    font-weight: bold;
+    color: #2e7d32;
+    display: block;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    left: 0;
+  }
+
+  .td-value {
+    padding-right: 10px !important;
+  }
+
+  .total-value-each {
+    color: blue;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: right;
+    text-align: right;
+  }
+
+  .footer td {
+    width: 100%;
+  }
 }

@@ -42,7 +42,8 @@ export class OrderDetailComponent implements OnInit {
         }
       },
       (error) => {
-        this.errorMessage = 'Error fetching order details: ' + error.message;
+        this.errorMessage = 'Error fetching order details: ';
+        //  + error.message;
       }
     );
   }

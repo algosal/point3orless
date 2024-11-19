@@ -33,6 +33,14 @@ h3 {
   color: #365a37; /* Darker green for text */
 }
 
+.pricing-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  justify-content: flex-start;
+  justify-items: left;
+}
 button {
   padding: 4px 8px;
   border: none;

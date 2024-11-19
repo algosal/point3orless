@@ -11,8 +11,11 @@
     <button (click)="removeItem(item.id)">Remove</button>
   </div>
   }
-
-  <h3>Total: {{ totalAmount | currency }}</h3>
+  <div class="pricing-details">
+    <h3>Total of Products: {{ totalAmountBeforeShipment | currency }}</h3>
+    <h3>Shipping, Handling & Insurance: {{ shipment | currency }}</h3>
+    <h3>Total: {{ totalAmount | currency }}</h3>
+  </div>
 
   <div class="button-container">
     <button class="clear-cart-btn" (click)="clearCart()">Clear Cart</button>

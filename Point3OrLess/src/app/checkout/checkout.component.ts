@@ -28,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   userPhone = '';
   private card: any;
   private timer: any = null;
+  private totalAmountPriorToShipment: number = 0;
 
   constructor(
     private renderer: Renderer2,
@@ -99,10 +100,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   calculateTotalAmount(): void {
-    this.totalAmount = this.cartItems.reduce(
+    this.totalAmountPriorToShipment = this.cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
+    this.totalAmount =
+      this.totalAmountPriorToShipment + this.totalAmountPriorToShipment * 0.05;
     console.log('Total Amount:', this.totalAmount);
   }
 

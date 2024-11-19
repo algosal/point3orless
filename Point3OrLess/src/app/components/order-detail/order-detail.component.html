@@ -14,19 +14,41 @@
           <th>Total</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let detail of orderDetails">
-          <td>{{ detail.product_name }}</td>
-          <td>{{ detail.product_price }}</td>
-          <td>{{ detail.quantity }}</td>
-          <td>{{ detail.product_price * detail.quantity }}</td>
+          <td data-label="Product Name">
+            {{ detail.product_name }}
+          </td>
+          <td data-label="Unit Price">
+            {{ detail.product_price | currency }}
+          </td>
+          <td data-label="Quantity">{{ detail.quantity }}</td>
+          <td data-label="Total" class="td-value">
+            <div class="total-value-each">
+              {{ detail.product_price * detail.quantity | currency }}
+            </div>
+          </td>
         </tr>
       </tbody>
-      <tfoot>
+
+      <tfoot class="footer">
+        <tr>
+          <td colspan="3" class="total-label">Pre Total</td>
+          <td class="total-value">
+            {{ totalAmount / 1.05 | currency }}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="total-label">Shipment</td>
+          <td class="total-value">
+            {{ (totalAmount / 1.05) * 0.05 | currency }}
+          </td>
+        </tr>
         <tr>
           <td colspan="3" class="total-label">Grand Total</td>
           <td class="total-value">
-            {{ totalAmount | currency }}
+            {{ totalAmount / 1.05 + (totalAmount / 1.05) * 0.05 | currency }}
           </td>
         </tr>
       </tfoot>

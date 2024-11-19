@@ -44,7 +44,7 @@ export class UserInfoService {
 
   // Check if the user is approved
   isUserApproved(): boolean {
-    return this.userData?.isApproved === 'Yes';
+    return this.userData?.isApproved === true;
   }
 
   // Get the user's full name

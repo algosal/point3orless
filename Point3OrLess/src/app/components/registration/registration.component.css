@@ -24,6 +24,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="date"],
+input[type="tel"],
 select {
   padding: 10px;
   margin-bottom: 15px;
@@ -38,6 +39,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="date"]:focus,
+input[type="tel"]:focus,
 select:focus {
   border-color: #007bff;
   outline: none;

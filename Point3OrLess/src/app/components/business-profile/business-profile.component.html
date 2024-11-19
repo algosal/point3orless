@@ -3,7 +3,7 @@
 <div class="profile-container">
   <h1>Welcome, {{ userData.firstName }} {{ userData.lastName }}</h1>
 
-  @if(userData.isApproved == "No" && userData.isActive == "No"){
+  @if(userData.isApproved == false && userData.isActive == false){
   <div>
     <h2>Your profile is not approved yet.</h2>
     <p>Please complete your business profile to proceed.</p>
@@ -13,10 +13,10 @@
       <!-- Add fields like business name, address, etc. -->
     </form>
   </div>
-  } @if(userData.isApproved == "No" && userData.isActive == "Yes"){
+  } @if(userData.isApproved == false && userData.isActive == true){
   <h2>Your profile is not approved yet.</h2>
   <h2>But it is submitted and in review.</h2>
-  } @if(userData.isApproved == "Yes" && userData.isActive == "Yes"){
+  } @if(userData.isApproved == true && userData.isActive == true){
   <h1>Enjoy Shopping</h1>
   <p>the editable user information will go here</p>
   }

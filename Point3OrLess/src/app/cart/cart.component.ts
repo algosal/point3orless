@@ -15,6 +15,8 @@ export class CartComponent implements OnInit {
   cartItems: { id: string; name: string; quantity: number; price: number }[] =
     [];
   totalAmount: number = 0;
+  totalAmountBeforeShipment: number = 0;
+  shipment: number = 0;
 
   constructor(private cartService: CartService) {}
 
@@ -28,10 +30,12 @@ export class CartComponent implements OnInit {
   }
 
   calculateTotal(): void {
-    this.totalAmount = this.cartItems.reduce(
+    this.totalAmountBeforeShipment = this.cartItems.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
+    this.shipment = this.totalAmountBeforeShipment * 0.05;
+    this.totalAmount = this.totalAmountBeforeShipment + this.shipment;
   }
 
   removeItem(productId: string): void {

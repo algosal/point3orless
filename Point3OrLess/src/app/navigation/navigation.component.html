@@ -26,8 +26,17 @@
             >
           </ng-container>
         </li>
+
         <li class="navigation-item">
-          <a class="navigation-link" (click)="navigate('/contact')">Contact</a>
+          <ng-container *ngIf="isLoggedIn">
+            <a class="navigation-link" (click)="navigate('/orders')">Orders</a>
+          </ng-container>
+
+          <ng-container *ngIf="!isLoggedIn">
+            <a class="navigation-link" (click)="navigate('/contact')"
+              >Contact</a
+            >
+          </ng-container>
         </li>
 
         <!-- Cart Icon with Badge -->

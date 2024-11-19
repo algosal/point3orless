@@ -28,6 +28,13 @@ export class RegistrationComponent {
     this.registrationForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
+        phoneNumber: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern('^[0-9]{10}$'), // Ensures a 10-digit phone number
+          ],
+        ],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         gender: ['', Validators.required],
@@ -82,7 +89,6 @@ export class RegistrationComponent {
   }
 
   // Validator to ensure users are at least 21 years old
-  // Validator to ensure users are at least 21 years old
   ageValidator(control: AbstractControl): ValidationErrors | null {
     const birthDate = new Date(control.value);
     const today = new Date();
@@ -92,7 +98,7 @@ export class RegistrationComponent {
     const dayDifference = today.getDate() - birthDate.getDate();
 
     // If the birth month is after the current month, or it's the same month and birth date is in the future, subtract 1 from age.
-    if (monthDifference < 0 || (monthDifference === 0 && dayDifference <= 0)) {
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
       age--;
     }
 
@@ -104,20 +110,20 @@ export class RegistrationComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
+      console.log(this.registrationForm.value);
       this.http
         .post(
           'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/Users',
-          this.registrationForm.value
+          JSON.stringify(this.registrationForm.value)
         )
         .subscribe(
           (response: any) => {
+            console.log(response);
             if (response.statusCode == 200) {
               alert('Successfully Registered');
               this.router.navigate(['/login']); // Navigate to the login component
-              // console.log('User registered successfully', response);
             } else {
               alert('Sorry Something went wrong');
-              this.router.navigate(['']); // Navigate to the login component
             }
           },
           (error) => {

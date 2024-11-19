@@ -1,9 +1,24 @@
+<div *ngIf="orders.length == 0" class="orders-container">
+  <div>
+    <h1>No Orders Yet</h1>
+  </div>
+</div>
+
 <div *ngIf="orders.length > 0" class="orders-container">
-  <h2>Orders</h2>
+  <h1>Orders</h1>
   <div class="order-card" *ngFor="let order of orders">
     <div class="order-header">
-      <span class="order-date">Order Date: {{ order.created_at }}</span>
+      <span class="order-date">Order Date: {{ order.created_at }} CST</span>
     </div>
+    <div class="shipment-info-wrapper">
+      <h2>Point3OrLess Order</h2>
+      <div class="shipping-info">
+        <h3>Shipment Information</h3>
+        <p><strong>Company:</strong> {{ order.shipping_company }}</p>
+        <p><strong>Tracking:</strong> {{ order.tracking_number }}</p>
+      </div>
+    </div>
+
     <div class="order-body">
       <h3>{{ order.name }}</h3>
       <p><strong>Email:</strong> {{ order.email }}</p>

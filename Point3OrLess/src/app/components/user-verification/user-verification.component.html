@@ -1,0 +1,40 @@
+<div class="verification-container">
+  <h2>User Verification</h2>
+  <p *ngIf="message" class="message">{{ message }}</p>
+
+  <div *ngIf="!isPhoneVerified" class="verification-section">
+    <label>Phone Number:</label>
+    <input type="text" [value]="user?.phoneNumber" readonly />
+    <button *ngIf="!isPhoneVerified" (click)="sendPhoneVerificationCode()">
+      Send Code
+    </button>
+  </div>
+
+  <div *ngIf="!isPhoneVerified" class="verification-section">
+    <label>Enter Code:</label>
+    <input type="text" [(ngModel)]="phoneCode" placeholder="Enter code" />
+    <button (click)="validatePhoneCode()">Verify</button>
+  </div>
+
+  <div *ngIf="!isEmailVerified" class="verification-section">
+    <label>Email:</label>
+    <input type="email" [value]="user?.email" readonly />
+    <button
+      *ngIf="!isEmailVerified"
+      (click)="sendEmailVerification()"
+      [disabled]="isEmailVerificationSent"
+    >
+      Send Verification Email
+    </button>
+  </div>
+
+  <p *ngIf="isPhoneVerified && isEmailVerified" class="success">
+    Both phone and email are verified. You may proceed.
+  </p>
+
+  <button *ngIf="isPhoneVerified && isEmailVerified" class="success">
+    <a class="shop-button" (click)="navigate('/business-profile')">
+      Business Profile
+    </a>
+  </button>
+</div>
