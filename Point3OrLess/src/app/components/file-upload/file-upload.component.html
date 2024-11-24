@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Upload PDF files for your Business</h2>
+  <ul>
+    <li>Certificate of Corporation</li>
+    <li>Certificate of Sales Authority</li>
+    <li>IRS EIN</li>
+    <li>Any other Related Documents</li>
+  </ul>
+
+  <input type="file" (change)="onFileSelect($event)" accept="application/pdf" />
+  <input
+    type="text"
+    [(ngModel)]="userGivenName"
+    placeholder="Enter your display name"
+    required
+  />
+  <button (click)="uploadFile()">Upload File</button>
+
+  <div
+    *ngIf="statusMessage"
+    [ngClass]="{
+      message: !statusMessage.startsWith('Error'),
+      error: statusMessage.startsWith('Error')
+    }"
+  >
+    {{ statusMessage }}
+  </div>
+  <div class="update-button">
+    <button (click)="updateActivation()">Send for Final Review</button>
+  </div>
+  <!-- New Button for Updating Business Info -->
+</div>

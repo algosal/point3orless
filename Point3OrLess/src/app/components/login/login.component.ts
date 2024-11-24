@@ -46,13 +46,44 @@ export class LoginComponent {
             this.userInfoService.setSessionToaken(sessionToken);
             // console.log(response.user);
             this.userInfoService.setUserData(response.user); // Set user information
-            // console.log(this.userInfoService.getUserData());
-            console.log(this.userInfoService.getSessionToken());
+            console.log(this.userInfoService.getUserData());
+            console.log(response);
+            // console.log(this.userInfoService.getSessionToken());
             // Check if the user is approved
-            if (response.user.isApproved === 'No') {
-              this.router.navigate(['/business-profile']); // Navigate to the business profile
+
+            // if (
+            //   response.user.isApproved === false &&
+            //   response.user.isActive === false
+            // ) {
+            //   this.router.navigate(['business-profile']); // Navigate to the business profile
+            // }
+            // if (
+            //   response.user.documentsSubmitted == false &&
+            //   response.user.isActive === true
+            // ) {
+            //   this.router.navigate(['documents']); // Navigate to the business documents
+            // }
+            // if (response.user.isApproved === true) {
+            //   this.router.navigate(['/products']); // Navigate to the business profile
+            // }
+            // else {
+            //   this.router.navigate(['products']); // Navigate to the home route if approved
+            // }
+
+            if (
+              response.user.isApproved === false &&
+              response.user.isActive === false
+            ) {
+              this.router.navigate(['business-profile']); // Navigate to the business profile
+            } else if (
+              response.user.documentsSubmitted === false &&
+              response.user.isActive === true
+            ) {
+              this.router.navigate(['documents']); // Navigate to the business documents
+            } else if (response.user.isApproved === false) {
+              this.router.navigate(['business-profile']); // Navigate to the products
             } else {
-              this.router.navigate(['']); // Navigate to the home route if approved
+              this.router.navigate(['products']); // Navigate to the products by default
             }
           } else {
             alert('Bad Request');

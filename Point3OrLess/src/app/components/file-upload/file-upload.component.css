@@ -1,0 +1,55 @@
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+input[type="file"],
+input[type="text"] {
+  display: block;
+  margin: 20px 0;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.message,
+.error {
+  margin: 5px;
+}
+.message {
+  margin-top: 20px;
+  color: green;
+}
+
+.error {
+  color: red;
+}
+.update-button {
+  position: absolute;
+  background-color: #218838;
+  margin: 5px;
+  bottom: 2em;
+  right: 2em;
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,10 @@ import { Observable } from 'rxjs';
 export class VerificationService {
   private phoneVerificationApi =
     'https://nth7u9lr3i.execute-api.us-east-2.amazonaws.com/Stage1/twilio';
-  private emailVerificationApi = 'https://your-backend-api/email-verification'; // Replace with actual email verification endpoint
+  private emailVerificationApi =
+    'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/emailVerification'; // Replace with actual email verification endpoint
+  private phoneVerificationEndpoint =
+    'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/phoneVerification'; // Third endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -27,8 +30,27 @@ export class VerificationService {
   }
 
   // Send email verification request
-  sendEmailVerification(email: string): Observable<any> {
+  sendEmailVerification(email: string, jwt: string): Observable<any> {
+    // const payload = { email };
+    console.log(this.emailVerificationApi + '?email=' + email + '&jwt=' + jwt);
+    //point3orless.com/email/sendVerificationEmail.php?email=salman@salmansaeed.us&jwt=your-jwt-token
+    https: return this.http.get(
+      this.emailVerificationApi + '?email=' + email + '&jwt=' + jwt
+    );
+  }
+
+  // Send email verification request to the third endpoint with JWT token in the header (using PUT)
+  sendPhoneVerificationWithJwtToDynamoDB(
+    email: string,
+    jwtToken: string
+  ): Observable<any> {
     const payload = { email };
-    return this.http.post(this.emailVerificationApi, payload);
+    console.log(payload);
+    const headers = new HttpHeaders({
+      Authorization: jwtToken, // Add the JWT token in the Authorization header
+    });
+
+    // PUT request to the third endpoint
+    return this.http.put(this.phoneVerificationEndpoint, payload, { headers });
   }
 }

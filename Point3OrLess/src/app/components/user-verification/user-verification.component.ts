@@ -29,6 +29,7 @@ export class UserVerificationComponent implements OnInit {
   ngOnInit(): void {
     // Fetch user data
     this.user = this.userInfoService.getUserData();
+    console.log(this.user);
     if (this.user) {
       this.isPhoneVerified = this.user.phoneVerified;
       this.isEmailVerified = this.user.emailVerified;
@@ -60,6 +61,19 @@ export class UserVerificationComponent implements OnInit {
             this.isPhoneVerified = true;
             this.user.phoneVerified = true; // Update locally
             this.message = 'Phone number successfully verified.';
+            this.verificationService
+              .sendPhoneVerificationWithJwtToDynamoDB(
+                this.user.email,
+                this.userInfoService.getSessionToken()
+              )
+              .subscribe(
+                (response) => {
+                  console.log('Verification successful', response);
+                },
+                (error) => {
+                  console.error('Verification failed', error);
+                }
+              );
           },
           error: () => {
             this.message = 'Invalid verification code. Please try again.';
@@ -72,11 +86,17 @@ export class UserVerificationComponent implements OnInit {
   sendEmailVerification(): void {
     if (this.user && this.user.email) {
       this.verificationService
-        .sendEmailVerification(this.user.email)
+        .sendEmailVerification(
+          this.user.email,
+          this.userInfoService.getSessionToken()
+        )
         .subscribe({
-          next: () => {
+          next: (response) => {
+            console.log(response);
             this.isEmailVerificationSent = true; // Disable the button after one click
             this.message = 'Verification email sent. Please check your inbox.';
+            alert('Check your inbox to activate your email');
+            this.router.navigate(['login']);
           },
           error: () => {
             this.message =

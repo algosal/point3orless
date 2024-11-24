@@ -1,24 +1,77 @@
 <!-- business-profile.component.html -->
 @if(userData){
 <div class="profile-container">
-  <h1>Welcome, {{ userData.firstName }} {{ userData.lastName }}</h1>
-
   @if(userData.isApproved == false && userData.isActive == false){
   <div>
-    <h2>Your profile is not approved yet.</h2>
-    <p>Please complete your business profile to proceed.</p>
-
-    <!-- Form for submitting business profile -->
-    <form>
-      <!-- Add fields like business name, address, etc. -->
+    <form [formGroup]="businessForm" (ngSubmit)="onSubmit()">
+      <h1>Welcome, {{ userData.firstName }} {{ userData.lastName }}</h1>
+      <h2>Your profile is not approved yet.</h2>
+      <p>Please complete your business profile to proceed.</p>
+      <label>
+        Business Name:
+        <input formControlName="business_name" />
+      </label>
+      <label>
+        Business Type:
+        <input formControlName="business_type" />
+      </label>
+      <label>
+        Address:
+        <input formControlName="address" />
+      </label>
+      <label>
+        Phone Number:
+        <input formControlName="phone_number" />
+      </label>
+      <label>
+        Email:
+        <input formControlName="email" type="email" />
+      </label>
+      <label>
+        Website URL:
+        <input formControlName="website_url" />
+      </label>
+      <label>
+        Owner Name:
+        <input formControlName="owner_name" />
+      </label>
+      <label>
+        Established Date:
+        <input formControlName="established_date" type="date" />
+      </label>
+      <label>
+        EIN or Tax ID:
+        <input formControlName="ein_or_tax_id" />
+      </label>
+      <label>
+        Reseller's Certificate (Sales Authority #):
+        <input formControlName="resellers_certificate" />
+      </label>
+      <label>
+        Number of Employees:
+        <input formControlName="number_of_employees" type="number" />
+      </label>
+      <label>
+        Annual Revenue:
+        <input formControlName="annual_revenue" type="number" />
+      </label>
+      <button type="submit" [disabled]="businessForm.invalid">Submit</button>
     </form>
   </div>
-  } @if(userData.isApproved == false && userData.isActive == true){
-  <h2>Your profile is not approved yet.</h2>
-  <h2>But it is submitted and in review.</h2>
+  } @if(userData.isApproved == false && userData.isActive == true &&
+  this.userData?.documentsSubmitted == true ) {
+  <form>
+    <h1>Welcome, {{ userData.firstName }} {{ userData.lastName }}</h1>
+    <h2>Your profile is not approved yet.</h2>
+    <h2>But it is submitted and in review.</h2>
+  </form>
   } @if(userData.isApproved == true && userData.isActive == true){
-  <h1>Enjoy Shopping</h1>
-  <p>the editable user information will go here</p>
+  <form>
+    <h1>Welcome, {{ userData.firstName }} {{ userData.lastName }}</h1>
+    <h1>Enjoy Shopping</h1>
+    <p>the editable user information will go here</p>
+    <p>This will go for updates in future</p>
+  </form>
   }
 </div>
 }

@@ -1,0 +1,81 @@
+/* General Form Styling */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #4caf50; /* Earth green */
+  border-radius: 10px;
+  background-color: #f5f5dc; /* Beige */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Label Styling */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #2e7d32; /* Deep green */
+}
+
+/* Input and Text Field Styling */
+input,
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #4caf50; /* Earth green border */
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #2e7d32; /* Highlight green */
+  outline: none;
+  box-shadow: 0 0 5px rgba(46, 125, 50, 0.5); /* Slight glow */
+}
+
+/* Button Styling */
+button {
+  background-color: #4caf50; /* Earth green */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #a5d6a7; /* Pale green when disabled */
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2e7d32; /* Dark green hover */
+}
+
+/* Optional Styling for Specific Fields */
+input[type="email"],
+input[type="date"],
+input[type="number"] {
+  background-color: #e8f5e9; /* Very pale green */
+}
+
+/* General Form Headings */
+form h1,
+form h2 {
+  text-align: center;
+  color: #1b5e20; /* Deep cannabis green */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  form {
+    padding: 15px;
+  }
+
+  input,
+  button {
+    padding: 8px;
+    font-size: 13px;
+  }
+}

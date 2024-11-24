@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class UnauthorizedComponent {
   constructor(private router: Router) {}
 
-  goHome(): void {
-    this.router.navigate(['/']); // Navigate to the home page
+  goHome(linkAddress: string): void {
+    this.router.navigate([linkAddress]); // Navigate to the home page
   }
 }

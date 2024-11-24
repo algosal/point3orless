@@ -14,6 +14,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 import { UserVerificationComponent } from './components/user-verification/user-verification.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { loggedIn } from './guards/loggedIn.guard';
 
 export const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
@@ -30,5 +32,11 @@ export const routes: Routes = [
   { path: 'orders', component: OrderListComponent },
   { path: 'order-details/:id', component: OrderDetailComponent },
   { path: 'verification', component: UserVerificationComponent },
+  {
+    path: 'documents',
+    component: FileUploadComponent,
+    canActivate: [loggedIn],
+  },
+
   // { path: '', redirectTo: '', pathMatch: 'full' },
 ];
