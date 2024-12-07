@@ -27,7 +27,7 @@ export class OrderService {
 
   // Get orders
   getOrders(email: string): Observable<any> {
-    console.log('the email from the service', email);
+    // console.log('the email from the service', email);
     const url = `${this.clientOrdersURL}?email=${email}`;
     return this.http.get<any>(url, { headers: this.getHeaders() });
   }

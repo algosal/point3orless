@@ -110,7 +110,7 @@ export class RegistrationComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      console.log(this.registrationForm.value);
+      // console.log(this.registrationForm.value);
       this.http
         .post(
           'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/Users',
@@ -118,7 +118,7 @@ export class RegistrationComponent {
         )
         .subscribe(
           (response: any) => {
-            console.log(response);
+            // console.log(response);
             if (response.statusCode == 200) {
               alert('Successfully Registered');
               this.router.navigate(['/login']); // Navigate to the login component

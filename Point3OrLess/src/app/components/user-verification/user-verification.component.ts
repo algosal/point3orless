@@ -29,7 +29,7 @@ export class UserVerificationComponent implements OnInit {
   ngOnInit(): void {
     // Fetch user data
     this.user = this.userInfoService.getUserData();
-    console.log(this.user);
+    // console.log(this.user);
     if (this.user) {
       this.isPhoneVerified = this.user.phoneVerified;
       this.isEmailVerified = this.user.emailVerified;
@@ -41,7 +41,7 @@ export class UserVerificationComponent implements OnInit {
     if (this.user && this.user.phoneNumber) {
       this.verificationService.sendPhoneCode(this.user.phoneNumber).subscribe({
         next: (res) => {
-          console.log(res);
+          // console.log(res);
           this.message = 'Verification code sent to your phone.';
         },
         error: () => {
@@ -68,7 +68,7 @@ export class UserVerificationComponent implements OnInit {
               )
               .subscribe(
                 (response) => {
-                  console.log('Verification successful', response);
+                  // console.log('Verification successful', response);
                 },
                 (error) => {
                   console.error('Verification failed', error);
@@ -92,7 +92,7 @@ export class UserVerificationComponent implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            console.log(response);
+            // console.log(response);
             this.isEmailVerificationSent = true; // Disable the button after one click
             this.message = 'Verification email sent. Please check your inbox.';
             alert('Check your inbox to activate your email');

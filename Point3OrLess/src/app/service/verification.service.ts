@@ -17,9 +17,9 @@ export class VerificationService {
 
   // Send phone verification code
   sendPhoneCode(phoneNumber: string): Observable<any> {
-    console.log('we are in the verification service ' + phoneNumber);
+    // console.log('we are in the verification service ' + phoneNumber);
     const payload = { phoneNumber: `+1${phoneNumber}` };
-    console.log(payload);
+    // console.log(payload);
     return this.http.put(this.phoneVerificationApi, JSON.stringify(payload));
   }
 
@@ -32,7 +32,7 @@ export class VerificationService {
   // Send email verification request
   sendEmailVerification(email: string, jwt: string): Observable<any> {
     // const payload = { email };
-    console.log(this.emailVerificationApi + '?email=' + email + '&jwt=' + jwt);
+    // console.log(this.emailVerificationApi + '?email=' + email + '&jwt=' + jwt);
     //point3orless.com/email/sendVerificationEmail.php?email=salman@salmansaeed.us&jwt=your-jwt-token
     https: return this.http.get(
       this.emailVerificationApi + '?email=' + email + '&jwt=' + jwt
@@ -45,7 +45,7 @@ export class VerificationService {
     jwtToken: string
   ): Observable<any> {
     const payload = { email };
-    console.log(payload);
+    // console.log(payload);
     const headers = new HttpHeaders({
       Authorization: jwtToken, // Add the JWT token in the Authorization header
     });

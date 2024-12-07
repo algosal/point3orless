@@ -51,7 +51,7 @@ export class FileUploadComponent implements OnInit {
     this.businessInfo.getBusinessDocumentsByEmail(this.email, '').subscribe(
       (response) => {
         this.documents = response.documents; // Store the document data
-        console.log(this.documents);
+        // console.log(this.documents);
       },
       (error) => {
         console.error('Error fetching business documents:', error);
@@ -138,7 +138,7 @@ export class FileUploadComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          console.log(res);
+          // console.log(res);
         },
         (err) => {
           console.log(err);

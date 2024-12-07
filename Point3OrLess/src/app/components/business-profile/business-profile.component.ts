@@ -81,7 +81,7 @@ export class BusinessProfileComponent implements OnInit {
         .subscribe(
           (response) => {
             this.activateUser();
-            console.log('Business details submitted successfully:', response);
+            // console.log('Business details submitted successfully:', response);
             alert('Submission successful!');
             this.router.navigate(['documents']);
           },
@@ -94,7 +94,7 @@ export class BusinessProfileComponent implements OnInit {
   }
 
   activateUser() {
-    console.log('we are in');
+    // console.log('we are in');
     this.businessService
       .updateBusinessInfo(
         {
@@ -104,7 +104,7 @@ export class BusinessProfileComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log(response);
+          // console.log(response);
         },
         (error) => {
           console.log(error);

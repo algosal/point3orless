@@ -34,7 +34,7 @@ export class OrderListComponent implements OnInit {
       (response: any) => {
         if (response.success) {
           this.orders = response.data;
-          console.log(this.orders);
+          // console.log(this.orders);
         } else {
           this.errorMessage = 'Failed to load orders';
         }
