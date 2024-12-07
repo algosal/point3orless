@@ -50,14 +50,14 @@ export class CheckoutComponent implements OnInit {
     this.priceService.getLatestPrice().subscribe({
       next: (price_restriction) => {
         this.dynamicPriceRestriction = price_restriction;
-        console.log(
-          'Fetched Dynamic Price Restriction: ',
-          this.dynamicPriceRestriction
-        );
+        // console.log(
+        //   'Fetched Dynamic Price Restriction: ',
+        //   this.dynamicPriceRestriction
+        // );
       },
       error: (error) => {
         this.errorMessage = error.message;
-        console.error('Error fetching dynamic price restriction:', error);
+        // console.error('Error fetching dynamic price restriction:', error);
       },
     });
   }
@@ -68,7 +68,7 @@ export class CheckoutComponent implements OnInit {
     script.type = 'text/javascript';
     script.async = true;
     script.onload = () => {
-      console.log('Square.js script loaded successfully.');
+      // console.log('Square.js script loaded successfully.');
       this.initializePaymentForm();
     };
     script.onerror = (error: any) => {
@@ -106,7 +106,7 @@ export class CheckoutComponent implements OnInit {
     );
     this.totalAmount =
       this.totalAmountPriorToShipment + this.totalAmountPriorToShipment * 0.05;
-    console.log('Total Amount:', this.totalAmount);
+    // console.log('Total Amount:', this.totalAmount);
   }
 
   loadUserInfo(): void {
@@ -117,7 +117,7 @@ export class CheckoutComponent implements OnInit {
       this.userAddress = `${userAddress.street}, ${userAddress.city}, ${userAddress.state}, ${userAddress.postalCode}`;
       this.userPhone = userAddress.phoneNumber;
     }
-    console.log('User Info:', this.userData);
+    // console.log('User Info:', this.userData);
   }
 
   startCountdown(): void {
@@ -148,7 +148,7 @@ export class CheckoutComponent implements OnInit {
       .then((result: any) => {
         if (result.status === 'OK') {
           this.nonce = result.token;
-          console.log('Nonce:', this.nonce);
+          // console.log('Nonce:', this.nonce);
           this.sendToCharge(this.nonce);
           this.startCountdown();
         } else {
@@ -174,7 +174,7 @@ export class CheckoutComponent implements OnInit {
       order: this.cartItems,
       cnonce: cnonce,
     };
-    console.log(FullOrder);
+    // console.log(FullOrder);
     this.paymentService.processPayment(FullOrder).subscribe(
       (response) => {
         console.log('Payment response:', response.body);
@@ -183,7 +183,7 @@ export class CheckoutComponent implements OnInit {
           setTimeout(() => {
             this.cartService.clearCart(); // Clear cart after successful payment
             this.navigateToSuccessPage();
-          }, 2000); // Navigate after short delay
+          }, 3000); // Navigate after short delay
         } else {
           this.isPaymentSuccessful = false;
         }
@@ -196,9 +196,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   navigateToSuccessPage() {
-    alert('We Will Navigate now');
+    // alert('We Will Navigate now');
     this.router.navigate(['/']);
-    // Implement your navigation logic to the success page
   }
 
   tryAgain() {
@@ -206,5 +205,9 @@ export class CheckoutComponent implements OnInit {
     this.isPaymentSuccessful = null;
     this.countdown = 30;
     clearInterval(this.timer);
+  }
+
+  keepShopping(){
+    this.router.navigate(['/products'])
   }
 }

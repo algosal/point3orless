@@ -13,7 +13,7 @@
   }
   <div class="pricing-details">
     <h3>Total of Products: {{ totalAmountBeforeShipment | currency }}</h3>
-    <h3>Shipping, Handling & Insurance: {{ shipment | currency }}</h3>
+    <h3>Shipping & Handling: {{ shipment | currency }}</h3>
     <h3>Total: {{ totalAmount | currency }}</h3>
   </div>
 
@@ -30,4 +30,7 @@
 </div>
 } @else {
 <p class="empty-cart-message">Your cart is empty.</p>
+<button class="keep-shopping-btn" (click)="keepShopping()">
+  Start Shopping
+</button>
 }

@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -52,4 +53,73 @@ button:hover {
   margin: 5px;
   bottom: 2em;
   right: 2em;
+}
+
+/* Business Documents Container */
+.business-documents {
+  background-color: #f7faf7; /* Soft earthy green background */
+  border: 1px solid #b5d8b5; /* Subtle border with green tone */
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Document Header */
+.doc-header {
+  font-size: 1.5rem;
+  color: #2f6f4f; /* Dark earthy green */
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Document List */
+.doc-list {
+  list-style: none;
+  padding: 0;
+}
+
+.doc-item {
+  background-color: #e9f3e9; /* Light green item background */
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 1px solid #c3e6c3; /* Slightly darker green border */
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doc-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Document Details */
+.doc-detail {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #3f6f3f; /* Earthy dark green for text */
+}
+
+.doc-detail strong {
+  color: #2f4f2f; /* Slightly darker green for strong text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .business-documents {
+    padding: 15px;
+  }
+
+  .doc-header {
+    font-size: 1.2rem;
+  }
+
+  .doc-item {
+    padding: 10px;
+  }
+
+  .doc-detail {
+    font-size: 0.9rem;
+  }
 }

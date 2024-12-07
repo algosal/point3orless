@@ -66,14 +66,14 @@ export class ProductComponent implements OnInit {
 
   // Add product to cart using CartService
   addToCart(product: any): void {
-    console.log('in the add to cart');
+    // console.log('in the add to cart');
     this.cartService.addToCart({
       id: product.id,
       name: product.name,
       quantity: product.quantity,
       price: product.wholesalePrice,
     });
-    console.log(`Added ${product.quantity} of ${product.name} to the cart`);
+    // console.log(`Added ${product.quantity} of ${product.name} to the cart`);
     product.quantity = 1;
   }
 

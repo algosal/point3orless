@@ -20,7 +20,7 @@ export class UserInfoService {
   // Set entire user data object
   setUserData(data: any): void {
     this.userData = data;
-    console.log('User data updated:', this.userData);
+    // console.log('User data updated:', this.userData);
   }
 
   // Set only the user info section of userData
@@ -34,7 +34,7 @@ export class UserInfoService {
   setUserAddress(address: any): void {
     if (!this.userData) this.userData = {};
     this.userData = { ...this.userData, address }; // Set the address in userData
-    console.log('User address updated:', address);
+    // console.log('User address updated:', address);
   }
 
   // Get entire user data object

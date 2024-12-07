@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -14,7 +15,7 @@ import { BusinessService } from '../../service/business.service';
   templateUrl: './business-profile.component.html',
   styleUrls: ['./business-profile.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
 })
 export class BusinessProfileComponent implements OnInit {
   userData: any;
@@ -109,5 +110,9 @@ export class BusinessProfileComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  startShopping() {
+    this.router.navigate(['products']);
   }
 }

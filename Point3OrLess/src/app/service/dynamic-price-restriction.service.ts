@@ -26,7 +26,8 @@ export class PriceService {
           if (response.success && response.price_restriction !== undefined) {
             return response.price_restriction;
           } else {
-            throw new Error(response.message || 'Failed to fetch the price');
+            return 3000;
+            // throw new Error(response.message || 'Failed to fetch the price');
           }
         }),
         catchError(this.handleError)

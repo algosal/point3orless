@@ -15,6 +15,10 @@
     required
   />
   <button (click)="uploadFile()">Upload File</button>
+  <!-- The update button for Requesting the Review   -->
+  <div class="update-button">
+    <button (click)="updateActivation()">Request Review</button>
+  </div>
 
   <div
     *ngIf="statusMessage"
@@ -25,8 +29,22 @@
   >
     {{ statusMessage }}
   </div>
-  <div class="update-button">
-    <button (click)="updateActivation()">Send for Final Review</button>
+
+  <!-- Display fetched documents -->
+  <div class="business-documents">
+    <h3 class="doc-header">Submitted Business Documents</h3>
+    <ul class="doc-list">
+      <li class="doc-item" *ngFor="let doc of documents">
+        <div class="doc-detail">
+          <strong>Created At:</strong> {{ doc.created_at }}
+        </div>
+        <div class="doc-detail">
+          <strong>Name:</strong> {{ doc.user_given_name }}
+        </div>
+        <div class="doc-detail">
+          <strong>Status:</strong> {{ doc.document_approval }}
+        </div>
+      </li>
+    </ul>
   </div>
-  <!-- New Button for Updating Business Info -->
 </div>

@@ -9,7 +9,13 @@ export class BusinessService {
   private baseUrl =
     'https://xu4z97vz6l.execute-api.us-east-2.amazonaws.com/v1/api/businesses-profiles/info-only';
   private getBusinessesURL =
-    'https://point3orless.com/point3-or-less-api/public/api/businesses';
+    'https://point3orless.com/point3-or-less-api/public/api/businesses'; // Lumen endpoint
+  private getDocumentsByEmailURL =
+    'https://point3orless.com/api-business-documents/GetBusinessDocumentsByEmail.php';
+
+  //Extra End point without Lumen
+  private getTheBusinessInfoURL =
+    'https://point3orless.com/api-business-documents/GetBusinessByEmail.php?email=salman@salmansaeed.us';
 
   private businessInfo: any = null;
 
@@ -56,5 +62,14 @@ export class BusinessService {
       data,
       { headers }
     );
+  }
+
+  // New function to get business documents by email
+  getBusinessDocumentsByEmail(email: string, jwt: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: jwt, // Replace with the actual token or retrieve dynamically
+    });
+    const url = `${this.getDocumentsByEmailURL}?email=${email}`; // Construct the endpoint to get documents
+    return this.http.get(url, { headers });
   }
 }

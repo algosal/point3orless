@@ -22,6 +22,7 @@ export class FileUploadComponent implements OnInit {
   businessId: string = '1'; // Replace with dynamic business ID
   userGivenName: string = ''; // This will be provided by the user
   selectedFile: any = null;
+  documents: any[] = []; // To hold the fetched document data
 
   constructor(
     private http: HttpClient,
@@ -35,9 +36,25 @@ export class FileUploadComponent implements OnInit {
     this.businessInfo.getBusinessByEmail(this.email, '').subscribe(
       (response) => {
         this.businessId = response.id;
+
+        // Fetch the business documents after getting the business ID
+        this.fetchBusinessDocuments();
       },
       (error) => {
         console.log(error);
+      }
+    );
+  }
+
+  // Fetch business documents by email
+  fetchBusinessDocuments() {
+    this.businessInfo.getBusinessDocumentsByEmail(this.email, '').subscribe(
+      (response) => {
+        this.documents = response.documents; // Store the document data
+        console.log(this.documents);
+      },
+      (error) => {
+        console.error('Error fetching business documents:', error);
       }
     );
   }
@@ -53,7 +70,6 @@ export class FileUploadComponent implements OnInit {
 
   //clear fields
   clearFields(): void {
-    // alert("File was uploaded Successfull");
     this.selectedFile = null; // Reset the file selection
     this.userGivenName = ''; // Clear the display name input
 
@@ -106,6 +122,7 @@ export class FileUploadComponent implements OnInit {
           if (response) {
             this.statusMessage = 'File uploaded successfully!';
             this.clearFields();
+            this.fetchBusinessDocuments();
           }
         });
     };

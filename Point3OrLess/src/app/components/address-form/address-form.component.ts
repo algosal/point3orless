@@ -39,13 +39,13 @@ export class AddressFormComponent {
       !this.isPhoneNumberInvalid()
     ) {
       // Handle valid form submission
-      console.log('Form submitted:', {
-        street: this.street,
-        city: this.city,
-        state: this.state,
-        postalCode: this.postalCode,
-        phoneNumber: this.phoneNumber,
-      });
+      // console.log('Form submitted:', {
+      //   street: this.street,
+      //   city: this.city,
+      //   state: this.state,
+      //   postalCode: this.postalCode,
+      //   phoneNumber: this.phoneNumber,
+      // });
 
       this.userInfoService.setUserAddress({
         street: this.street,

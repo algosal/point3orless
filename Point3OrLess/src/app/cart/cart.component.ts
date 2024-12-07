@@ -56,10 +56,10 @@ export class CartComponent implements OnInit {
   checkout(): void {
     if (this.cartItems.length > 0) {
       // Handle the checkout process (e.g., navigate to a payment page, call an API, etc.)
-      console.log(
-        'Proceeding to checkout with the following items:',
-        this.cartItems
-      );
+      // console.log(
+      //   'Proceeding to checkout with the following items:',
+      //   this.cartItems
+      // );
 
       this.router.navigate(['/address']);
 
